@@ -12,4 +12,13 @@ pip install types-flame
 
 ## Generation
 
+### Step 1: generate `out/auto_generated.pyi`
+
 Append the hook dir to the `DL_PYTHON_HOOK_PATH`.
+launch flame
+
+### Step 2: add overlay
+
+```sh
+uv run apply_overwrites.py out/auto_generated.pyi overwrites.pyi flame-stubs/__init__.pyi
+```

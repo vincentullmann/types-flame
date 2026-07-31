@@ -8,7 +8,6 @@ import libcst as cst
 from libcst.codemod import CodemodContext
 from libcst.codemod.visitors import ApplyTypeAnnotationsVisitor
 
-
 ROOT = Path(__file__).parent
 
 

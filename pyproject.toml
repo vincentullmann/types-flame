@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "types-flame"
 description = "Python stubs for the Autodesk Flame Python API"
 version = "2026.2.3"
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 readme = "README.md"
 license = { text = "MIT" }
 classifiers = [
@@ -17,9 +17,10 @@ classifiers = [
 ]
 keywords = ["types", "graphics", "VFX"]
 authors = [{name = "Beat Reichenbach", email = "beatreichenbach@users.noreply.github.com"}]
+dependencies = []
 
 [project.optional-dependencies]
-dev = ["black>=24.0"]
+dev = ["black>=24.0", "libcst"]
 
 [project.urls]
 homepage = "https://github.com/beatreichenbach/types-flame"
@@ -31,3 +32,11 @@ include = ["flame-stubs"]
 
 [tool.black]
 skip-string-normalization = true
+
+[tool.ruff]
+
+extend-ignore = [
+    "Q000",  # bad-quotes-inline-string
+    "SIM102",  # simplify-boolean-expression
+    "F541",
+]
