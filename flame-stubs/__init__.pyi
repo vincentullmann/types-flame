@@ -34,9 +34,24 @@ class PyActionFamilyNode(PyNode):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
     def clear_schematic(arg1: PyActionFamilyNode) -> bool:
         """
         Clear the Action/Image/GMaskTracer schematic of all nodes.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
         """
         ...
 
@@ -48,11 +63,12 @@ class PyActionFamilyNode(PyNode):
         """
         ...
 
-    def create_node(arg1: PyActionFamilyNode, node_type: str, file_path: str = '', is_udim: bool = False, tile_resolution: int = 0) -> Any:
+    def create_node(arg1: PyActionFamilyNode, node_type: str, file_path: str = '', is_udim: bool = False, tile_resolution: int = 0, input_colour_space: str = '') -> Any:
         """
         Add an Action/Image/GMaskTracer object node to the Action/Image/GMaskTracer schematic.
         Keyword argument:
         file_path -- Required by nodes that load an asset, such as Matchbox.
+        input_colour_space -- Optional for nodes that load external media, such as IBL.
         """
         ...
 
@@ -148,9 +164,24 @@ class PyActionNode(PyActionFamilyNode):
         """
         ...
 
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
     def clear_schematic(arg1: PyActionFamilyNode) -> bool:
         """
         Clear the Action/Image/GMaskTracer schematic of all nodes.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
         """
         ...
 
@@ -162,11 +193,12 @@ class PyActionNode(PyActionFamilyNode):
         """
         ...
 
-    def create_node(arg1: PyActionFamilyNode, node_type: str, file_path: str = '', is_udim: bool = False, tile_resolution: int = 0) -> Any:
+    def create_node(arg1: PyActionFamilyNode, node_type: str, file_path: str = '', is_udim: bool = False, tile_resolution: int = 0, input_colour_space: str = '') -> Any:
         """
         Add an Action/Image/GMaskTracer object node to the Action/Image/GMaskTracer schematic.
         Keyword argument:
         file_path -- Required by nodes that load an asset, such as Matchbox.
+        input_colour_space -- Optional for nodes that load external media, such as IBL.
         """
         ...
 
@@ -237,11 +269,21 @@ class PyActionNode(PyActionFamilyNode):
         """
         ...
 
-    def import_fbx(arg1: PyActionFamilyNode, file_path: str, lights: bool = True, cameras: bool = True, models: bool = True, normals: bool = True, mesh_animations: bool = True, keep_frame_rate: bool = True, bake_animation: bool = False, object_properties: bool = True, auto_fit: bool = False, unit_to_pixels: float = 10.0, create_media: bool = True, is_udim: bool = False, relink_material: bool = True) -> list:
+    def import_fbx(arg1: PyActionFamilyNode, file_path: str, lights: bool = True, cameras: bool = True, models: bool = True, normals: bool = True, mesh_animations: bool = True, keep_frame_rate: bool = True, bake_animation: bool = False, object_properties: bool = True, auto_fit: bool = False, unit_to_pixels: float = 10.0, create_media: bool = True, is_udim: bool = False, relink_material: bool = True, input_colour_space: str = '') -> list:
         """
         Import an FBX file into the Action schematic using the Action Objects mode.
         Keyword argument:
         file_path -- Path to the FBX file. Mandatory.
+        input_colour_space -- Colour space name used as input for textures. Optional.
+        """
+        ...
+
+    def import_psd(arg1: PyActionFamilyNode, file_path: str, input_colour_space: str = '') -> list:
+        """
+        Import a PSD file into the Action schematic.
+        Keyword arguments:
+        file_path -- Path to the PSD file. Mandatory.
+        input_colour_space -- The colour space used as input. Optional.
         """
         ...
 
@@ -265,11 +307,12 @@ class PyActionNode(PyActionFamilyNode):
         """
         ...
 
-    def read_fbx(arg1: PyActionFamilyNode, file_path: str, lights: bool = True, cameras: bool = True, models: bool = True, normals: bool = True, mesh_animations: bool = True, keep_frame_rate: bool = True, bake_animation: bool = False, object_properties: bool = True, auto_fit: bool = False, unit_to_pixels: float = 10.0, is_udim: bool = False, relink_material: bool = True) -> Any:
+    def read_fbx(arg1: PyActionFamilyNode, file_path: str, lights: bool = True, cameras: bool = True, models: bool = True, normals: bool = True, mesh_animations: bool = True, keep_frame_rate: bool = True, bake_animation: bool = False, object_properties: bool = True, auto_fit: bool = False, unit_to_pixels: float = 10.0, is_udim: bool = False, relink_material: bool = True, input_colour_space: str = '') -> Any:
         """
         Import an FBX file into the Action schematic using the Read File mode.
         Keyword argument:
         file_path -- Path to the FBX file. Mandatory.
+        input_colour_space -- Colour space name used as input for textures. Optional.
         """
         ...
 
@@ -326,7 +369,7 @@ class PyArchiveEntry(PyFlameObject):
 
 class PyAttribute:
     """
-    <property object at 0x7f00d60c7bf0>
+    <property object at 0x36672c5e0>
     """
     values = ...
 
@@ -560,6 +603,12 @@ class PyBatch(PyFlameObject):
         """
         ...
 
+    def clear_colour(arg1: PyBatch) -> None:
+        """
+        Clear the colour of an object in the Media Panel.
+        """
+        ...
+
     def clear_context(arg1: PyBatch, index: int) -> bool:
         """
         Clear a specific Context view in the Batch Group.
@@ -590,7 +639,7 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def create_batch_group(arg1: PyBatch, name: str, nb_reels: int = 4, nb_shelf_reels: int = 1, reels: list = None, shelf_reels: list = None, start_frame: int = 1, duration: Any = None) -> Any:
+    def create_batch_group(arg1: PyBatch, name: str, nb_reels: Any = None, nb_shelf_reels: Any = None, reels: list = None, shelf_reels: list = None, start_frame: int = 1, duration: Any = None) -> Any:
         """
         Create a new Batch Group object in the Desktop catalogue.
         Keyword arguments:
@@ -608,7 +657,7 @@ class PyBatch(PyFlameObject):
         """
         Create a Batch node object in the Batch schematic.
          Keyword argument:
-        node_type -- Must be a value from the PyBatch.node_types.
+        node_type -- Must be a value from the PyBatch.node_types or the name of a node in the User, Project, or Shared bin.
         """
         ...
 
@@ -851,10 +900,10 @@ class PyBrowser:
         """
         Show the file browser.Keyword arguments:
         default_path -- Set the path.
-        extension -- Set the extension filter. Can be a single extension or a list of extensions. Leave empty to see all files.
+        extension -- Set the extension filter. Can be a single extension or a list of extensions.Leave empty to see all files.
         select_directory -- Only show directories.
         multi_selection -- Allow the user to select multiple files.
-        include_resolution -- Display the resolution controls. Possible values are False, True, or "Full".  The Full mode includes the new adaptive and scaling presets modes.
+        include_resolution -- Display the resolution controls. Possible values are False, True, or "Full". The Full mode includes the new adaptive and scaling presets modes.
         title -- Set the window title.
         """
         ...
@@ -966,7 +1015,7 @@ class PyClip(PyArchiveEntry):
 
     def flush_renders(arg1: PyClip) -> None:
         """
-        Flush the Clip's TimelineFX renders.
+        Flush the Clip's Timeline FX renders.
         """
         ...
 
@@ -1045,11 +1094,28 @@ class PyClipNode(PyNode):
     output_sockets = ...
     parent = ...
     sockets = ...
+    version_uid = ...
+    version_uids = ...
 
     def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
         ...
 
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
+        """
         ...
 
     def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
@@ -1079,6 +1145,100 @@ class PyClipNode(PyNode):
     def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
+        """
+        ...
+
+    def set_version_uid(arg1: PyClipNode, version_uid: str) -> bool:
+        """
+        Set the clip node's current version unique ID.
+        Keywords argument:
+        version_uid -- version unique ID.
+        """
+        ...
+
+
+class PyClrMgmtNode(PyNode):
+    """
+    Object representing a Colour Mgmt node.
+    """
+    attributes = ...
+    input_sockets = ...
+    output_sockets = ...
+    parent = ...
+    sockets = ...
+
+    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+        ...
+
+    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
+        """
+        ...
+
+    def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
+        """
+        Delete the node.
+        """
+        ...
+
+    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+        """
+        Duplicate the node.
+        """
+        ...
+
+    def get_context_variables(arg1: PyClrMgmtNode) -> dict:
+        """
+        Get the context variables in a dictionary.
+        """
+        ...
+
+    def import_transform(arg1: PyClrMgmtNode, file_path: str) -> None:
+        """
+        Import a transform from a file.
+        """
+        ...
+
+    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+        """
+        Load a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def reset_context_variables(arg1: PyClrMgmtNode) -> None:
+        """
+        Reset the context variables to their initial state from the ocio config.
+        """
+        ...
+
+    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+        """
+        Save a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+        """
+        Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
+        """
+        ...
+
+    def set_context_variable(arg1: PyClrMgmtNode, name: str, value: str) -> None:
+        """
+        Set the value for the specified context variable.
         """
         ...
 
@@ -1264,6 +1424,79 @@ class PyCoNode(PyFlameObject):
         ...
 
 
+class PyColourMgtTimelineFX(PyTimelineFX):
+    """
+    Object representing a Colour Mgmt Timeline FX.
+    """
+    attributes = ...
+    has_maps_cache_media = ...
+    parent = ...
+    type = ...
+
+    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+        ...
+
+    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def flush_maps_cache_media(arg1: PyTimelineFX) -> bool:
+        """
+        Flush the Timeline FX Maps and ML cached media.
+        """
+        ...
+
+    def get_context_variables(arg1: PyColourMgtTimelineFX) -> dict:
+        """
+        Get the context variables in a dictionary.
+        """
+        ...
+
+    def import_transform(arg1: PyColourMgtTimelineFX, file_path: str) -> None:
+        """
+        Import a transform from a file.
+        """
+        ...
+
+    def load_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+        """
+        Load a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def reset_context_variables(arg1: PyColourMgtTimelineFX) -> None:
+        """
+        Reset the context variables to their initial state from the ocio config.
+        """
+        ...
+
+    def save_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+        """
+        Save a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def set_context_variable(arg1: PyColourMgtTimelineFX, name: str, value: str) -> None:
+        """
+        Set the value for the specified context variable.
+        """
+        ...
+
+    def slide_keyframes(arg1: PyTimelineFX, offset: float) -> None:
+        """
+        Slide the keyframes the PySegment.
+        Keywords argument:
+        offset -- Relative offset to slide the keyframes.
+        sync -- Enable to perform the same operation on the segments that belong to the same sync group as the current PySegment.
+        """
+        ...
+
+    def sync_connected_segments(arg1: PyTimelineFX) -> None:
+        """
+        Push the Timeline FX to connected segments.
+        """
+        ...
+
+
 class PyCompassNode(PyNode):
     """
     Class derived from PyNode. This class represents a Compass node.
@@ -1279,6 +1512,21 @@ class PyCompassNode(PyNode):
         ...
 
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
+        """
         ...
 
     def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
@@ -1328,6 +1576,12 @@ class PyDesktop(PyArchiveEntry):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
+    def clear(arg1: PyDesktop) -> bool:
+        """
+        Clear the Desktop.
+        """
+        ...
+
     def clear_colour(arg1: PyArchiveEntry) -> None:
         """
         Clear the colour of an object in the Media Panel.
@@ -1340,7 +1594,7 @@ class PyDesktop(PyArchiveEntry):
         """
         ...
 
-    def create_batch_group(arg1: PyDesktop, name: str, nb_reels: int = 4, nb_shelf_reels: int = 1, reels: list = None, shelf_reels: list = None, start_frame: int = 1, duration: Any = None) -> Any:
+    def create_batch_group(arg1: PyDesktop, name: str, nb_reels: Any = None, nb_shelf_reels: Any = None, reels: list = None, shelf_reels: list = None, start_frame: int = 1, duration: Any = None) -> Any:
         """
         Create a new Batch Group object in the Desktop catalogue.
         Keyword arguments:
@@ -1386,12 +1640,14 @@ class PyExporter:
     Audio: PresetType = ...
     Autodesk: PresetVisibility = ...
     Distribution_Package: PresetType = ...
+    Flow_Production_Tracking: PresetVisibility = ...
     Image_Sequence: PresetType = ...
     Movie: PresetType = ...
     Project: PresetVisibility = ...
     Sequence_Publish: PresetType = ...
     Shared: PresetVisibility = ...
     Shotgun: PresetVisibility = ...
+    User: PresetVisibility = ...
     export_all_subtitles = ...
     export_between_marks = ...
     export_subtitles_as_files = ...
@@ -1422,29 +1678,29 @@ class PyExporter:
         background_job_settings -- Settings of background job(s) created if any.
         hooks -- Export python hooks override. If passed, regular export python hooks implemented in exportHooks.py will be bypassed for this export and methods in the passed object with matching name will be called.
             Instance of object passed should implement the following signature:
-
+        
                 class PythonHookOverride(object):
                     def preExport(self, info, userData, *args, **kwargs)
                         pass
-
+        
                     def postExport(self, info, userData, *args, **kwargs):
                         pass
-
+        
                     def preExportSequence(self, info, userData, *args, **kwargs):
                         pass
-
+        
                     def postExportSequence(self, info, userData, *args, **kwargs):
                         pass
-
+        
                     def preExportAsset(self, info, userData, *args, **kwargs):
                         pass
-
+        
                     def postExportAsset(self, info, userData, *args, **kwargs):
                         pass
-
+        
                     def exportOverwriteFile(self, path, *args, **kwargs):
                         return "ask" # or "overwrite"
-
+        
         hooks_user_data -- User data object passed to the export python hooks. This object can be modified by the PythonHookOverride methods but cannot be re-assigned
         """
         ...
@@ -1534,7 +1790,7 @@ class PyFolder(PyArchiveEntry):
         """
         ...
 
-    def create_sequence(arg1: PyFolder, name: str = 'Untitled Sequence', video_tracks: int = 1, video_stereo: bool = False, width: int = 0, height: int = 0, ratio: float = 1.7777777777777777, bit_depth: int = 0, scan_mode: str = '', frame_rate: str = '???', start_at: Any = '00:00:00+00', duration: Any = '00:00:00+01', audio_tracks: int = 1, audio_stereo: bool = True) -> Any:
+    def create_sequence(arg1: PyFolder, name: str = 'Untitled Sequence', video_tracks: int = 1, video_stereo: bool = False, width: Any = None, height: Any = None, ratio: Any = None, bit_depth: Any = None, scan_mode: Any = None, frame_rate: Any = None, start_at: Any = '00:00:00+00', duration: Any = '00:00:00+01', audio_tracks: int = 1, audio_stereo: bool = True) -> Any:
         """
         Create a Sequence in a PyReel, PyLibrary, PyFolder.
         Keywords arguments:
@@ -1589,9 +1845,24 @@ class PyGMaskTracerNode(PyActionFamilyNode):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
     def clear_schematic(arg1: PyActionFamilyNode) -> bool:
         """
         Clear the Action/Image/GMaskTracer schematic of all nodes.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
         """
         ...
 
@@ -1603,11 +1874,12 @@ class PyGMaskTracerNode(PyActionFamilyNode):
         """
         ...
 
-    def create_node(arg1: PyActionFamilyNode, node_type: str, file_path: str = '', is_udim: bool = False, tile_resolution: int = 0) -> Any:
+    def create_node(arg1: PyActionFamilyNode, node_type: str, file_path: str = '', is_udim: bool = False, tile_resolution: int = 0, input_colour_space: str = '') -> Any:
         """
         Add an Action/Image/GMaskTracer object node to the Action/Image/GMaskTracer schematic.
         Keyword argument:
         file_path -- Required by nodes that load an asset, such as Matchbox.
+        input_colour_space -- Optional for nodes that load external media, such as IBL.
         """
         ...
 
@@ -1678,11 +1950,21 @@ class PyGMaskTracerNode(PyActionFamilyNode):
         """
         ...
 
-    def import_fbx(arg1: PyActionFamilyNode, file_path: str, lights: bool = True, cameras: bool = True, models: bool = True, normals: bool = True, mesh_animations: bool = True, keep_frame_rate: bool = True, bake_animation: bool = False, object_properties: bool = True, auto_fit: bool = False, unit_to_pixels: float = 10.0, create_media: bool = True, is_udim: bool = False, relink_material: bool = True) -> list:
+    def import_fbx(arg1: PyActionFamilyNode, file_path: str, lights: bool = True, cameras: bool = True, models: bool = True, normals: bool = True, mesh_animations: bool = True, keep_frame_rate: bool = True, bake_animation: bool = False, object_properties: bool = True, auto_fit: bool = False, unit_to_pixels: float = 10.0, create_media: bool = True, is_udim: bool = False, relink_material: bool = True, input_colour_space: str = '') -> list:
         """
         Import an FBX file into the GMask Tracer schematic using the GMask Tracer Objects mode.
         Keyword argument:
         file_path -- Path to the FBX file. Mandatory.
+        input_colour_space -- Colour space name used as input for textures. Optional.
+        """
+        ...
+
+    def import_psd(arg1: PyActionFamilyNode, file_path: str, input_colour_space: str = '') -> list:
+        """
+        Import a PSD file into the GMask Tracer schematic.
+        Keyword arguments:
+        file_path -- Path to the PSD file. Mandatory.
+        input_colour_space -- The colour space used as input. Optional.
         """
         ...
 
@@ -1706,11 +1988,12 @@ class PyGMaskTracerNode(PyActionFamilyNode):
         """
         ...
 
-    def read_fbx(arg1: PyActionFamilyNode, file_path: str, lights: bool = True, cameras: bool = True, models: bool = True, normals: bool = True, mesh_animations: bool = True, keep_frame_rate: bool = True, bake_animation: bool = False, object_properties: bool = True, auto_fit: bool = False, unit_to_pixels: float = 10.0, is_udim: bool = False, relink_material: bool = True) -> Any:
+    def read_fbx(arg1: PyActionFamilyNode, file_path: str, lights: bool = True, cameras: bool = True, models: bool = True, normals: bool = True, mesh_animations: bool = True, keep_frame_rate: bool = True, bake_animation: bool = False, object_properties: bool = True, auto_fit: bool = False, unit_to_pixels: float = 10.0, is_udim: bool = False, relink_material: bool = True, input_colour_space: str = '') -> Any:
         """
         Import an FBX file into the GMask Tracer schematic using the Read File mode.
         Keyword argument:
         file_path -- Path to the FBX file. Mandatory.
+        input_colour_space -- Colour space name used as input for textures. Optional.
         """
         ...
 
@@ -1751,6 +2034,21 @@ class PyHDRNode(PyNode):
     def analyze(arg1: PyHDRNode, analyze_mode: str = 'Current Shot') -> None:
         """
         Perform HDR analysis.
+        """
+        ...
+
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
         """
         ...
 
@@ -1835,7 +2133,7 @@ class PyHDRNode(PyNode):
 
 class PyHDRTimelineFX(PyTimelineFX):
     """
-    Object representing a HDR TimelineFX.
+    Object representing a HDR Timeline FX.
     """
     analysis_status = ...
     attributes = ...
@@ -1971,9 +2269,24 @@ class PyImageNode(PyActionFamilyNode):
         """
         ...
 
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
     def clear_schematic(arg1: PyActionFamilyNode) -> bool:
         """
         Clear the Action/Image/GMaskTracer schematic of all nodes.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
         """
         ...
 
@@ -1985,11 +2298,12 @@ class PyImageNode(PyActionFamilyNode):
         """
         ...
 
-    def create_node(arg1: PyActionFamilyNode, node_type: str, file_path: str = '', is_udim: bool = False, tile_resolution: int = 0) -> Any:
+    def create_node(arg1: PyActionFamilyNode, node_type: str, file_path: str = '', is_udim: bool = False, tile_resolution: int = 0, input_colour_space: str = '') -> Any:
         """
         Add an Action/Image/GMaskTracer object node to the Action/Image/GMaskTracer schematic.
         Keyword argument:
         file_path -- Required by nodes that load an asset, such as Matchbox.
+        input_colour_space -- Optional for nodes that load external media, such as IBL.
         """
         ...
 
@@ -2037,6 +2351,80 @@ class PyImageNode(PyActionFamilyNode):
     def organize(arg1: PyActionFamilyNode) -> bool:
         """
         Clean up the Action/Image/GMaskTracer schematic.
+        """
+        ...
+
+    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+        """
+        Save a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+        """
+        Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
+        """
+        ...
+
+
+class PyLensDistortionNode(PyNode):
+    """
+    Object representing a Lens Distortion node.
+    """
+    attributes = ...
+    input_sockets = ...
+    output_sockets = ...
+    parent = ...
+    sockets = ...
+
+    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+        ...
+
+    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def calculate(arg1: PyLensDistortionNode) -> None:
+        """
+        Calculate the amount of distorsion based on the position of vertices.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
+        """
+        ...
+
+    def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
+        """
+        Delete the node.
+        """
+        ...
+
+    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+        """
+        Duplicate the node.
+        """
+        ...
+
+    def import_lens_distortion(arg1: PyLensDistortionNode, filename: str) -> None:
+        """
+        Import the Lens Distortion file.
+        """
+        ...
+
+    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+        """
+        Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
@@ -2124,7 +2512,7 @@ class PyLibrary(PyArchiveEntry):
         """
         ...
 
-    def create_sequence(arg1: PyLibrary, name: str = 'Untitled Sequence', video_tracks: int = 1, video_stereo: bool = False, width: int = 0, height: int = 0, ratio: float = 1.7777777777777777, bit_depth: int = 0, scan_mode: str = '', frame_rate: str = '???', start_at: Any = '00:00:00+00', duration: Any = '00:00:00+01', audio_tracks: int = 1, audio_stereo: bool = True) -> Any:
+    def create_sequence(arg1: PyLibrary, name: str = 'Untitled Sequence', video_tracks: int = 1, video_stereo: bool = False, width: Any = None, height: Any = None, ratio: Any = None, bit_depth: Any = None, scan_mode: Any = None, frame_rate: Any = None, start_at: Any = '00:00:00+00', duration: Any = '00:00:00+01', audio_tracks: int = 1, audio_stereo: bool = True) -> Any:
         """
         Create a Sequence in a PyReel, PyLibrary, PyFolder.
         Keywords arguments:
@@ -2178,6 +2566,12 @@ class PyMarker(PyFlameObject):
         ...
 
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def sync_connected_segments(arg1: PyMarker) -> None:
+        """
+        Push the Segment Marker to connected segments.
+        """
         ...
 
 
@@ -2308,7 +2702,7 @@ class PyMediaHubFilesTabOptions:
 
     def set_tagged_colour_space(arg1: PyMediaHubFilesTabOptions, colour_space: str) -> None:
         """
-        Import pixel ratio value.  Returns None when resolution is not set to Same As Source.
+        Set the tagged colour space to use upon import.
         """
         ...
 
@@ -2467,10 +2861,78 @@ class PyMessages:
         Display a custom dialog with a selection of options.
         Keywords argument:
         title -- The title of the dialog.
-        message -- The message displayed in the center of the dialog.
+        message -- The message displayed in the centre of the dialog.
         type -- The type of dialog. Can be error, info, question, or warning.
         buttons -- The list of titles used to refer to the options
         cancel_button -- The text displayed in the cancel option
+        """
+        ...
+
+
+class PyMorphNode(PyNode):
+    """
+    Object representing a Morph node.
+    """
+    attributes = ...
+    input_sockets = ...
+    output_sockets = ...
+    parent = ...
+    sockets = ...
+
+    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+        ...
+
+    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
+        """
+        ...
+
+    def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
+        """
+        Delete the node.
+        """
+        ...
+
+    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+        """
+        Duplicate the node.
+        """
+        ...
+
+    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+        """
+        Load a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+        """
+        Save a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+        """
+        Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
+        """
+        ...
+
+    def set_mix_to_range(arg1: PyMorphNode) -> None:
+        """
+        Move the first and last keyframes of the mix curve to the range's first and last frame.
         """
         ...
 
@@ -2489,6 +2951,21 @@ class PyNode(PyFlameObject):
         ...
 
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
+        """
         ...
 
     def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
@@ -2538,9 +3015,24 @@ class PyOFXNode(PyNode):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
     def change_plugin(arg1: PyOFXNode, plugin_name: str) -> bool:
         """
         Change the active plugin for the openFX node
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
         """
         ...
 
@@ -2597,6 +3089,21 @@ class PyPaintNode(PyNode):
         """
         ...
 
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
+        """
+        ...
+
     def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
         """
         Delete the node.
@@ -2634,10 +3141,14 @@ class PyProject(PyArchiveEntry):
     """
     attributes = ...
     current_workspace = ...
+    description = ...
+    media_folder = ...
     name = ...
     nickname = ...
     parent = ...
+    project_folder = ...
     project_name = ...
+    setups_folder = ...
     shared_libraries = ...
     workspaces_count = ...
 
@@ -2665,6 +3176,24 @@ class PyProject(PyArchiveEntry):
         """
         ...
 
+    def export_ocio_config(arg1: PyProject, config_name: str, destination_folder: str = '', overwrite_existing: bool = False, export_as_locked: bool = False, generate_ocioz: bool = False) -> bool:
+        """
+        Export the OCIO config file.
+        Keyword arguments:
+        config_name -- Specifies the name that will be written inside the exported OCIO config and used as the parent folder name where the config will be exported. It should not contain the '.ocio' extension. Mandatory.
+        destination_folder -- Specifies the absolute destination folder for the exported OCIO config. It will use the default colour management shared path if empty.
+        overwrite_existing -- Specifies if the export should overwrite an existing OCIO config with the same name located in the same destination_folder.
+        export_as_locked -- Specifies if the exported OCIO config should be locked (the 'LockedPolicy' parameter inside the settings.cfg sidecar file).
+        generate_ocioz -- Specifies if an OCIOZ archive should be created alongside the exported OCIO config.
+        """
+        ...
+
+    def get_context_variables(arg1: PyProject) -> dict:
+        """
+        Get the context variables in a dictionary.
+        """
+        ...
+
     def get_wiretap_node_id(arg1: PyArchiveEntry) -> str:
         """
         Return the Wiretap Node ID of the Flame object, but only if the object is in the Media Panel.
@@ -2680,6 +3209,26 @@ class PyProject(PyArchiveEntry):
     def refresh_shared_libraries(arg1: PyProject) -> bool:
         """
         Refresh the Shared Libraries list in the Media Panel.
+        """
+        ...
+
+    def reload_ocio_config(arg1: PyProject, reset_colour_policy: bool = False) -> bool:
+        """
+        Reload the OCIO config file.
+        Keyword argument:
+        reset_colour_policy -- Delete the project's custom colour spaces, roles, and rules (false by default).
+        """
+        ...
+
+    def reset_context_variables(arg1: PyProject) -> None:
+        """
+        Reset the context variables to their initial state from the ocio config.
+        """
+        ...
+
+    def set_context_variable(arg1: PyProject, name: str, value: str) -> None:
+        """
+        Set the value for the specified context variable.
         """
         ...
 
@@ -2726,7 +3275,7 @@ class PyReel(PyArchiveEntry):
         """
         ...
 
-    def create_sequence(arg1: PyReel, name: str = 'Untitled Sequence', video_tracks: int = 1, video_stereo: bool = False, width: int = 0, height: int = 0, ratio: float = 1.7777777777777777, bit_depth: int = 0, scan_mode: str = '', frame_rate: str = '???', start_at: Any = '00:00:00+00', duration: Any = '00:00:00+01', audio_tracks: int = 1, audio_stereo: bool = True) -> Any:
+    def create_sequence(arg1: PyReel, name: str = 'Untitled Sequence', video_tracks: int = 1, video_stereo: bool = False, width: Any = None, height: Any = None, ratio: Any = None, bit_depth: Any = None, scan_mode: Any = None, frame_rate: Any = None, start_at: Any = '00:00:00+00', duration: Any = '00:00:00+01', audio_tracks: int = 1, audio_stereo: bool = True) -> Any:
         """
         Create a Sequence in a PyReel, PyLibrary, PyFolder.
         Keywords arguments:
@@ -2836,6 +3385,21 @@ class PyRenderNode(PyNode):
         ...
 
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
+        """
         ...
 
     def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
@@ -2971,6 +3535,7 @@ class PySegment(PyFlameObject):
     source_colour_primaries = ...
     source_duration = ...
     source_essence_uid = ...
+    source_frame_rate = ...
     source_has_history = ...
     source_height = ...
     source_in = ...
@@ -2988,6 +3553,8 @@ class PySegment(PyFlameObject):
     tail = ...
     tape_name = ...
     type = ...
+    version_uid = ...
+    version_uids = ...
 
     def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
         ...
@@ -3117,7 +3684,7 @@ class PySegment(PyFlameObject):
         Set the Matte channel of the source specified by channel_index or by channel_name if the matte_mode is set to Custom Matte.
         Keywords argument:
         channel_name -- Name of the channel found in matte_channels.
-        channel_index -- Index of the channel found in matte_chanels.
+        channel_index -- Index of the channel found in matte_channels.
         scope -- Scope of the changes ( Follow Preferences, No Sharing, Follow Source Sharing, Follow Connected Segments).
         matte_mode -- Matte origin (Follow RGB, No Matte, Custom Matte).
         """
@@ -3128,8 +3695,17 @@ class PySegment(PyFlameObject):
         Set the RGB channel of the source specified by channel_index or by channel_name
         Keywords argument:
         channel_name -- Name of the channel found in rgb_channels.
-        channel_index -- Index of the channel found in rgb_chanels.
+        channel_index -- Index of the channel found in rgb_channels.
         scope -- Scope of the changes ( Follow Preferences, No Sharing, Follow Source Sharing, Follow Connected Segments).
+        """
+        ...
+
+    def set_version_uid(arg1: PySegment, version_uid: str, scope: str = 'Follow Source Sharing') -> bool:
+        """
+        Set the current version unique ID of the source.
+        Keywords argument:
+        version_uid -- version unique ID.
+        scope -- Scope of the changes ( No Sharing, Follow Source Sharing, Follow Connected Segments).
         """
         ...
 
@@ -3160,13 +3736,13 @@ class PySegment(PyFlameObject):
 
     def smart_replace(arg1: PySegment, source_clip: PyClip) -> None:
         """
-        Replace the PySegment by the source_clip segment, including the TimelineFX.
+        Replace the PySegment by the source_clip segment, including the Timeline FX.
         """
         ...
 
     def smart_replace_media(arg1: PySegment, source_clip: PyClip) -> None:
         """
-        Replace the media of PySegment by the source_clip segment, leaving the PySegment TimelineFX untouched
+        Replace the media of PySegment by the source_clip segment, leaving the PySegment Timeline FX untouched
         """
         ...
 
@@ -3357,7 +3933,7 @@ class PySequence(PyClip):
 
     def flush_renders(arg1: PyClip) -> None:
         """
-        Flush the Clip's TimelineFX renders.
+        Flush the Clip's Timeline FX renders.
         """
         ...
 
@@ -3632,7 +4208,7 @@ class PyTimeline:
 
 class PyTimelineFX(PyFlameObject):
     """
-    Object representing a TimelineFX.
+    Object representing a Timeline FX.
     """
     attributes = ...
     has_maps_cache_media = ...
@@ -3660,6 +4236,189 @@ class PyTimelineFX(PyFlameObject):
     def save_setup(arg1: PyTimelineFX, file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def slide_keyframes(arg1: PyTimelineFX, offset: float) -> None:
+        """
+        Slide the keyframes the PySegment.
+        Keywords argument:
+        offset -- Relative offset to slide the keyframes.
+        sync -- Enable to perform the same operation on the segments that belong to the same sync group as the current PySegment.
+        """
+        ...
+
+    def sync_connected_segments(arg1: PyTimelineFX) -> None:
+        """
+        Push the Timeline FX to connected segments.
+        """
+        ...
+
+
+class PyTimewarpNode(PyNode):
+    """
+    Object representing a Timewarp node.
+    """
+    attributes = ...
+    input_sockets = ...
+    output_sockets = ...
+    parent = ...
+    sockets = ...
+
+    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+        ...
+
+    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
+        """
+        ...
+
+    def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
+        """
+        Delete the node.
+        """
+        ...
+
+    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+        """
+        Duplicate the node.
+        """
+        ...
+
+    def get_duration_timing(arg1: PyTimewarpNode, frame: float) -> float:
+        """
+        Return the timing value for the current frame while in the duration mode.
+        """
+        ...
+
+    def get_speed(arg1: PyTimewarpNode, frame: float) -> float:
+        """
+        Return the speed attribute at the requested frame.
+        """
+        ...
+
+    def get_speed_timing(arg1: PyTimewarpNode, frame: float) -> float:
+        """
+        The timing value for the current frame while in the speed mode.
+        """
+        ...
+
+    def get_timing(arg1: PyTimewarpNode, frame: float) -> float:
+        """
+        Return the timing value at the requested frame.
+        """
+        ...
+
+    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+        """
+        Load a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+        """
+        Save a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+        """
+        Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
+        """
+        ...
+
+    def set_speed(arg1: PyTimewarpNode, frame: float, new_speed: float) -> None:
+        """
+        Set the speed at the requested frame.
+        """
+        ...
+
+    def set_timing(arg1: PyTimewarpNode, frame: float, new_timing: float) -> None:
+        """
+        Set the timing at the requested frame.
+        """
+        ...
+
+
+class PyTimewarpTimelineFX(PyTimelineFX):
+    """
+    Object representing a Timewarp node.
+    """
+    attributes = ...
+    has_maps_cache_media = ...
+    parent = ...
+    type = ...
+
+    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+        ...
+
+    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def flush_maps_cache_media(arg1: PyTimelineFX) -> bool:
+        """
+        Flush the Timeline FX Maps and ML cached media.
+        """
+        ...
+
+    def get_duration_timing(arg1: PyTimewarpTimelineFX, frame: float) -> float:
+        """
+        Return the timing value for the current frame while in the duration mode.
+        """
+        ...
+
+    def get_speed(arg1: PyTimewarpTimelineFX, frame: float) -> float:
+        """
+        Return the speed attribute at the requested frame.
+        """
+        ...
+
+    def get_speed_timing(arg1: PyTimewarpTimelineFX, frame: float) -> float:
+        """
+        The timing value for the current frame while in the speed mode.
+        """
+        ...
+
+    def get_timing(arg1: PyTimewarpTimelineFX, frame: float) -> float:
+        """
+        Return the timing value at the requested frame.
+        """
+        ...
+
+    def load_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+        """
+        Load a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def save_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+        """
+        Save a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def set_speed(arg1: PyTimewarpTimelineFX, frame: float, new_speed: float) -> None:
+        """
+        Set the speed at the requested frame.
+        """
+        ...
+
+    def set_timing(arg1: PyTimewarpTimelineFX, frame: float, new_timing: float) -> None:
+        """
+        Set the timing at the requested frame.
         """
         ...
 
@@ -3771,12 +4530,169 @@ class PyTransition(PyFlameObject):
         ...
 
 
+class PyTypeFX(PyTimelineFX):
+    """
+    Object representing a Type Timeline FX.
+    """
+    attributes = ...
+    has_maps_cache_media = ...
+    layers = ...
+    parent = ...
+    type = ...
+
+    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+        ...
+
+    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def add_layer(arg1: PyTypeFX, layer_type: str = 'Centre') -> Any:
+        """
+        Create a new layer.
+        Keyword argument:
+        layer_type -- Must be one of Left, Centre(default), Right, Roll, or Crawl.
+        """
+        ...
+
+    def append_type_setup(arg1: PyTypeFX, file_name: str) -> bool:
+        """
+        Append a setup to the current Type setup.
+        """
+        ...
+
+    def flush_maps_cache_media(arg1: PyTimelineFX) -> bool:
+        """
+        Flush the Timeline FX Maps and ML cached media.
+        """
+        ...
+
+    def load_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+        """
+        Load a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def save_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+        """
+        Save a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def slide_keyframes(arg1: PyTimelineFX, offset: float) -> None:
+        """
+        Slide the keyframes the PySegment.
+        Keywords argument:
+        offset -- Relative offset to slide the keyframes.
+        sync -- Enable to perform the same operation on the segments that belong to the same sync group as the current PySegment.
+        """
+        ...
+
+    def sync_connected_segments(arg1: PyTimelineFX) -> None:
+        """
+        Push the Timeline FX to connected segments.
+        """
+        ...
+
+
+class PyTypeLayer(PyFlameObject):
+    """
+    Object representing a Type Layer.
+    """
+    attributes = ...
+    parent = ...
+    type = ...
+
+    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+        ...
+
+    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+
+class PyTypeNode(PyNode):
+    """
+    Object representing a Type node.
+    """
+    attributes = ...
+    input_sockets = ...
+    layers = ...
+    output_sockets = ...
+    parent = ...
+    sockets = ...
+
+    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+        ...
+
+    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+        ...
+
+    def add_layer(arg1: PyTypeNode, layer_type: str = 'Centre') -> Any:
+        """
+        Create a new layer.
+        Keyword argument:
+        layer_type -- Must be one of Left, Centre(default), Right, Roll, or Crawl.
+        """
+        ...
+
+    def append_type_setup(arg1: PyTypeNode, file_name: str) -> bool:
+        """
+        Append a setup to the current Type setup.
+        """
+        ...
+
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
+        """
+        ...
+
+    def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
+        """
+        Delete the node.
+        """
+        ...
+
+    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+        """
+        Duplicate the node.
+        """
+        ...
+
+    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+        """
+        Load a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+        """
+        Save a Node setup. A path and a file name must be defined as arguments.
+        """
+        ...
+
+    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+        """
+        Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
+        """
+        ...
+
+
 class PyUser:
     """
     Object representing a User.
     """
     name = ...
     nickname = ...
+    shortcuts_profile = ...
 
 
 class PyUsers:
@@ -3905,6 +4821,21 @@ class PyWriteFileNode(PyRenderNode):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
+    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+        """
+        Cache the Node result.
+        Keyword arguments:
+        start -- The first frame of the cache range. The current Batch start frame is used when not specified.
+        end -- The last frame of the cache range. The current Batch end frame is used when not specified.
+        """
+        ...
+
+    def clear_schematic_colour(arg1: PyNode) -> None:
+        """
+        Clear the schematic colour of the Node.
+        """
+        ...
+
     def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
         """
         Delete the node.
@@ -3991,8 +4922,8 @@ def execute_command(command: str, blocking: bool = True, shell: bool = False, ca
     This way of starting new processes is better since any native python
     subprocess command (os.system, subprocess, Popen, etc) will call fork()
     which will duplicate the process memory before calling exec().
-     This can be costly especially for a process like Flame.
-
+    This can be costly especially for a process like Flame.
+    
     command -- Command line to execute.
     blocking -- If True, will not return until the command line has completed.
     shell -- Should the command be executed in a sh shell.
@@ -4003,7 +4934,7 @@ def execute_command(command: str, blocking: bool = True, shell: bool = False, ca
     capture_stderr -- If True, stdout of the command will be captured and
                       returned instead of forwarded to the application stderr.
                       Requires blocking=True
-
+    
     Note: Environment variables will not be forwarded to the executed command.
     """
     ...
@@ -4036,6 +4967,12 @@ def find_by_uid(uid: str) -> Any:
 def find_by_wiretap_node_id(node_id: str) -> Any:
     """
     Find a Flame object in the Media Panel by Wiretap Node ID.
+    """
+    ...
+
+def flush_graphics_memory() -> None:
+    """
+    Free as much graphics memory as possible.  Note that clearing the undo buffer beforehand can increase the amount of releasable graphics memory.
     """
     ...
 
@@ -4128,9 +5065,7 @@ def set_render_option(render_option: str, render_context: str = '') -> bool:
     """
     Set the default render option.
     Keyword arguments:
-    render_option -- Defines the rendering method used. (Foreground, Background Reactor, Background Reactor (Auto), Burn)
+    render_option -- Defines the rendering method used. (Foreground)
     render_context -- Defines the rendering context. (Timeline, Conform, Effects, BFX, Batch). None for all of them.
-    Note: Batch does not support Background Reactor (Auto) and will
-          default to Background Reactor if (Auto) is passed.
     """
     ...
