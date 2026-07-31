@@ -1,19 +1,21 @@
 from __future__ import annotations
 
 import inspect
-import os.path
 import re
 from collections.abc import Callable
 from functools import partial
+from pathlib import Path
 from typing import Any
 
 import flame
 
+PACKAGE_DIR = Path(__file__).parent.parent
+OUTPUT_DIR = PACKAGE_DIR / 'out'
+OUTPUT_FILE = OUTPUT_DIR / 'auto_generated.pyi'
+
 
 def app_initialized(project_name: str) -> None:
-    package_dir = os.path.dirname(os.path.dirname(__file__))
-    output_dir = os.path.join(package_dir, 'flame-stubs')
-    generate_stub(flame, output_dir)
+    generate_stub(flame)
 
 
 def sort_key(obj: Any, attr: str) -> tuple:
@@ -29,10 +31,11 @@ def sort_key(obj: Any, attr: str) -> tuple:
     return 0, attr
 
 
-def generate_stub(module, output_dir: str) -> None:
-    output_path = os.path.join(output_dir, '__init__.pyi')
+def generate_stub(module) -> None:
 
-    with open(output_path, 'w') as f:
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+    with OUTPUT_FILE.open('w') as f:
         f.write('from typing import Any, overload\n\n\n')
 
         attrs = dir(module)

@@ -34,22 +34,22 @@ def main() -> None:
         "base",
         nargs="?",
         type=Path,
-        default=ROOT / "flame-stubs" / "__init__.pyi",
-        help="Generated stub file",
+        default=ROOT / "out/auto_generated.pyi",
+        help="auto-generated stub file",
     )
     parser.add_argument(
         "overlay",
         nargs="?",
         type=Path,
         default=ROOT / "overwrites.pyi",
-        help="Handwritten overlay stub",
+        help="handwritten overlay stub",
     )
     parser.add_argument(
         "output",
         nargs="?",
         type=Path,
         default=ROOT / "flame-stubs/__init__.pyi",
-        help="Merged output path",
+        help="merged output path",
     )
     args = parser.parse_args()
 
