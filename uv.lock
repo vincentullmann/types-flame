@@ -466,12 +466,20 @@ dev = [
     { name = "libcst" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "libcst" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "black", marker = "extra == 'dev'", specifier = ">=24.0" },
     { name = "libcst", marker = "extra == 'dev'" },
 ]
 provides-extras = ["dev"]
+
+[package.metadata.requires-dev]
+dev = [{ name = "libcst", specifier = ">=1.9.0" }]
 
 [[package]]
 name = "typing-extensions"

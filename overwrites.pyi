@@ -678,11 +678,11 @@ class PyTime:
     timecode: str
 
 class PyTimeline:
-    clip: PyClip | PySequence
-    current_effect: PyTimelineFX
-    current_marker: PyMarker
-    current_segment: PySegment
-    current_transition: PyTransition
+    clip: PyClip | PySequence | None
+    current_effect: PyTimelineFX | None
+    current_marker: PyMarker | None
+    current_segment: PySegment | None
+    current_transition: PyTransition | None
     type: str
 
 class PyTimelineFX:

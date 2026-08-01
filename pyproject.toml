@@ -40,3 +40,8 @@ extend-ignore = [
     "SIM102",  # simplify-boolean-expression
     "F541",
 ]
+
+[dependency-groups]
+dev = [
+    "libcst>=1.9.0",
+]
