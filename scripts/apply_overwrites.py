@@ -36,6 +36,7 @@ def main() -> None:
         "--overlays",
         action="append",
         type=Path,
+        default=[],
         help="overlays to apply",
     )
     parser.add_argument(

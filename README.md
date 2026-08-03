@@ -23,7 +23,7 @@ This generates `out/auto_generated.pyi`
 
 ```sh
 # download the html files
-./scrips/download_docs.sh
+./scripts/download_docs.sh
 
 # parse them
 uv run scripts/parse_docs.py

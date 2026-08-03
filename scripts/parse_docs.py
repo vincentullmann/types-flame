@@ -593,11 +593,13 @@ def api_to_module(api: ApiModel) -> cst.Module:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--docs", type=Path, default=DOCS)
-    parser.add_argument("--output", type=Path, default="out/from_docs.pyi")
+    parser.add_argument("--output", type=Path, default=OUT)
     args = parser.parse_args()
 
     api = html_to_api(args.docs)
     module = api_to_module(api)
+
+    args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(module.code, encoding="utf-8")
 
     n_attrs = sum(len(c.attrs) for c in api.classes.values())

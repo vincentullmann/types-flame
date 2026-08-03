@@ -1,5 +1,5 @@
 root_dir=$(realpath $(dirname $(realpath $0))/..)
-docs_dir="${root_dir}/docs"
+docs_dir="${root_dir}/out/docs"
 
 base_url="https://help.autodesk.com/cloudhelp/2026/ENU/Flame-API/files/Python-API/autodesk-flame-python-api/"
 
