@@ -36,3 +36,9 @@ this generates `out/from_docs.pyi`
 ```sh
 uv run scripts/apply_overwrites.py -i out/auto_generated.pyi -i out/from_docs.pyi -i in/overwrites.pyi -o flame-stubs/__init__.pyi
 ```
+
+### Step 4: ruff fix
+
+```sh
+uv run ruff check --fix flame-stubs/__init__.pyi
+```

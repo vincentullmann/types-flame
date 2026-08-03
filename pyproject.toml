@@ -19,9 +19,6 @@ keywords = ["types", "graphics", "VFX"]
 authors = [{name = "Beat Reichenbach", email = "beatreichenbach@users.noreply.github.com"}]
 dependencies = []
 
-[project.optional-dependencies]
-dev = ["black>=24.0", "beautifulsoup4", "libcst"]
-
 [project.urls]
 homepage = "https://github.com/beatreichenbach/types-flame"
 issues = "https://github.com/beatreichenbach/types-flame/issues"
@@ -49,4 +46,6 @@ extend-ignore = [
 dev = [
     "beautifulsoup4>=4.12.0",
     "libcst>=1.9.0",
+    "ruff>=0.16.1",
+    "ty>=0.0.65",
 ]
