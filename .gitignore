@@ -1,5 +1,5 @@
 # auto-generated stub files
-out/*.pyi
+out/
 
 # macOS
 .DS_Store
