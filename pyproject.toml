@@ -20,7 +20,7 @@ authors = [{name = "Beat Reichenbach", email = "beatreichenbach@users.noreply.gi
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["black>=24.0", "libcst"]
+dev = ["black>=24.0", "beautifulsoup4", "libcst"]
 
 [project.urls]
 homepage = "https://github.com/beatreichenbach/types-flame"
@@ -47,5 +47,6 @@ extend-ignore = [
 
 [dependency-groups]
 dev = [
+    "beautifulsoup4>=4.12.0",
     "libcst>=1.9.0",
 ]
