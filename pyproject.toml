@@ -39,6 +39,10 @@ extend-ignore = [
     "Q000",  # bad-quotes-inline-string
     "SIM102",  # simplify-boolean-expression
     "F541",
+
+    # type stubs
+    "PYI048", # Function body must contain exactly one statement (ruff)
+    "PIE790", # unnecessary-placeholder
 ]
 
 [dependency-groups]
