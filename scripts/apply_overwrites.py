@@ -8,43 +8,39 @@ import libcst as cst
 from libcst.codemod import CodemodContext
 from libcst.codemod.visitors import ApplyTypeAnnotationsVisitor
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).parent.parent
 
 
-def merge_stubs(base_file: Path, overlay_file: Path, output_file: Path) -> None:
-    base = cst.parse_module(base_file.read_text())
-    overlay = cst.parse_module(overlay_file.read_text())
-
+def merge_stubs(base: cst.Module, overlay: cst.Module) -> cst.Module:
     context = CodemodContext()
     ApplyTypeAnnotationsVisitor.store_stub_in_context(
         context,
         overlay,
         overwrite_existing_annotations=True,
     )
-    merged = ApplyTypeAnnotationsVisitor(context).transform_module(base)
-
-    output_file.parent.mkdir(parents=True, exist_ok=True)
-    output_file.write_text(merged.code)
+    return ApplyTypeAnnotationsVisitor(context).transform_module(base)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "base",
+        "-b",
+        "--base",
         nargs="?",
         type=Path,
         default=ROOT / "out/auto_generated.pyi",
         help="auto-generated stub file",
     )
     parser.add_argument(
-        "overlay",
-        nargs="?",
+        "-i",
+        "--overlays",
+        action="append",
         type=Path,
-        default=ROOT / "overwrites.pyi",
-        help="handwritten overlay stub",
+        help="overlays to apply",
     )
     parser.add_argument(
-        "output",
+        "-o",
+        "--output",
         nargs="?",
         type=Path,
         default=ROOT / "flame-stubs/__init__.pyi",
@@ -52,7 +48,18 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    merge_stubs(args.base, args.overlay, args.output)
+    #######################################
+    print("load base:", args.base)
+    result = cst.parse_module(args.base.read_text())
+
+    for path in args.overlays:
+        print(f"apply {path}")
+        overlay = cst.parse_module(path.read_text())
+        result = merge_stubs(result, overlay)
+
+    output = args.output
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(result.code)
     print(f"Wrote {args.output}")
 
 

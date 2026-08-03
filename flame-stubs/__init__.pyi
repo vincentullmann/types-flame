@@ -1,5 +1,5 @@
 from typing import Any, overload
-from PyExporter import BackgroundJobSettings
+from PyExporter import BackgroundJobSettings, PresetType, PresetVisibility
 
 class PresetType:
     Audio: PresetType
@@ -18,6 +18,980 @@ class PresetVisibility:
 
 class PyInferenceNode(PyNode):
     model_name: str
+
+class PyTypeTimelineFX(PyTimelineFX):
+    adaptive_mode: str
+    """
+    Used to get or set the Adaptive mode. One of the following must be passed as a string to set the mode: Width based on Ratio Height based on Ratio
+    """
+    current_layer: PyTypeLayer
+    """
+    Used to access the attributes, functions, and read-only properties of the current layer.
+    """
+    motion_blur: bool
+    """
+    Used to get or set the status of Motion Blur One of the following must be passed as the argument when the attribute is set: True False
+    """
+    motion_blur_phase: float
+    """
+    Used to get or set the motion blur phase. A float number between -1.0 and 1.0 must be passed as an argument when the attribute is set.
+    """
+    motion_blur_samples: int
+    """
+    Used to get or set the amount of motion blur samples. An integer number between 2 and 100 must be passed as an argument when the attribute is set.
+    """
+    motion_blur_shutter: float
+    """
+    Used to get or set the motion blur shutter. A float number between 0.10 and 50.0 must be passed as an argument when the attribute is set.
+    """
+    resolution_mode: str
+    """
+    Used to get or set the resolution mode. One of the following must be passed as a string to set the mode: Resolution List Adaptive Scaling Presets
+    """
+    scaling_presets_value: float
+    """
+    Used to get or set the Scaling Presets value. A float must be passed as an argument to set the value. The value represents the scaling percentage.
+    """
+    selected_layers: list
+    """
+    Used to access the attributes, functions, and read-only properties of the selected layers.
+    """
+    swaa: str
+    """
+    Used to get or set the amount of software anti-aliasing samples. One of the following must be passed as the argument when the attribute is set: SWAA 1x SWAA 4x SWAA 9x SWAA 16x SWAA 25x SWAA 36x SWAA 49x SWAA 64x
+    """
+    use_hwaa: bool
+    """
+    Used to get or set the status of Use HWAA One of the following must be passed as the argument when the attribute is set: True False
+    """
+
+class PyAverageNode(PyNode):
+    frames: str
+    """The Past Frames / Past & Future attribute of the Average node."""
+    mode: str
+    """The Letterbox mode attribute of the Burn-In Letterbox node."""
+    over: int
+    """The Average Over attribute of the Average node."""
+
+class PyBurninLetterboxNode(PyNode):
+    colour: tuple
+    """The Colour attribute of the Burn-In Letterbox node."""
+    mode: str
+    """The Letterbox mode attribute of the Burn-In Letterbox node."""
+    ratio: float
+    """The Ratio attribute of the Burn-In Letterbox node."""
+
+class PyClampNode(PyNode):
+    max_clamp: bool
+    """Clamp all values higher than the defined one."""
+    max_value: float
+    """The Maximum value before a clamp is performed."""
+    min_clamp: bool
+    """Clamp all values lower than the defined one."""
+    min_value: float
+    """The Minimum value before a clamp is performed."""
+
+class PyCo3DPath:
+    collapsed_in_manager: bool
+    """The Action node is collapsed in the Action Manager"""
+    name: str
+    """The name of the Action node in the Action schematic."""
+    pos_x: int
+    """The x position of the Action Node in the Action schematic."""
+    pos_y: int
+    """The y position of the Action Node in the Action schematic."""
+    position: tuple
+    """The Position attribute of the Camera 3D node in the Action 3D space."""
+    selected: bool
+    """The Action node is selected."""
+
+class PyCo3DShape:
+    collapsed_in_manager: bool
+    """The Action node is collapsed in the Action Manager"""
+    name: str
+    """The name of the Action node in the Action schematic."""
+    pos_x: int
+    """The x position of the Action Node in the Action schematic."""
+    pos_y: int
+    """The y position of the Action Node in the Action schematic."""
+    position: tuple
+    """The XYZ position of the Action node in the Action 3D space."""
+    selected: bool
+    """The Action node is selected."""
+    text: str
+    """The text string of the 3D Text node."""
+
+class PyCo3DText:
+    collapsed_in_manager: bool
+    """The Action node is collapsed in the Action Manager"""
+    name: str
+    """The name of the Action node in the Action schematic."""
+    pos_x: int
+    """The x position of the Action Node in the Action schematic."""
+    pos_y: int
+    """The y position of the Action Node in the Action schematic."""
+    position: tuple
+    """The XYZ position of the Action node in the Action 3D space."""
+    selected: bool
+    """The Action node is selected."""
+    text: str
+    """The text string of the 3D Text node."""
+
+class PyCoAxis(PyCoNode):
+    center: tuple
+    """The Center attribute of the Axis node in the Action 3D space."""
+    rotation: tuple
+    """
+    The Rotation attribute of the Camera node in the Action 3D space. Only active when *target_mode* = False.
+    """
+    scale: tuple
+    """The Scale attribute of the Camera 3D node in the Action 3D space."""
+    shear: tuple
+    """The Shear attribute of the Camera 3D node in the Action 3D space."""
+
+class PyCoCamera(PyCoNode):
+    distance: float
+    """
+    The Distance attribute of the Projector node. Only active when *target_mode* = False.
+    """
+    far: float
+    """The Far clipping plane attribute of the Camera 3D node."""
+    film_type: str
+    """
+    The Focal attribute of the Camera Action node. Only active when *physical_camera_active* is True.
+    """
+    focal: float
+    """
+    The Focal attribute of the Camera Action node. Only active when *physical_camera_active* is True.
+    """
+    fov: float
+    """The FOV (Field Of View) attribute of the Camera 3D node."""
+    fstop: str
+    """
+    The F-Stop attribute of the Camera Action node. Only active when *physical_camera_active* is True.
+    """
+    interest: tuple
+    """
+    The Interest attribute of the Projector node. Only active when *target_mode* = True.
+    """
+    near: float
+    """The Near clipping plane attribute of the Camera 3D node."""
+    physical_camera_active: bool
+    """
+    The Physical Camera Mode attribute of the Camera Action node. With this True, *film_type*, *fstop*, and *focal* are active.
+    """
+    roll: float
+    """
+    The Roll attribute of the Projector node. Only active when *target_mode* = True.
+    """
+    rotation: tuple
+    """
+    The Rotation attribute of the Camera node in the Action 3D space. Only active when *target_mode* = False.
+    """
+    target_mode: bool
+    """
+    The Targeting Mode attribute of the Camera node. True = Target, False = Free
+    """
+
+class PyCoCamera3D(PyCoNode):
+    aim: tuple
+    """The Aim attribute of the Camera 3D node in the Action 3D space."""
+    aperture_x: float
+    """The Aperture X attribute of the Camera 3D node."""
+    aperture_y: float
+    """The Aperture Y attribute of the Camera 3D node."""
+    camera_scale: float
+    """The Camera Scale attribute of the Camera 3D node in the Action 3D space."""
+    far: float
+    """The Far clipping plane attribute of the Camera 3D node."""
+    film_aspect: float
+    """The Film Aspect attribute of the Camera 3D node."""
+    film_fit_offset: float
+    """The Film Fit Offset attribute of the Camera 3D node."""
+    film_offset_left: float
+    """The Film Offset Left attribute of the Camera 3D node."""
+    film_offset_right: float
+    """The Film Offset Right attribute of the Camera 3D node."""
+    film_offset_x: float
+    """The Film Offset X attribute of the Camera 3D node."""
+    film_offset_y: float
+    """The Film Offset Y attribute of the Camera 3D node."""
+    film_roll: float
+    """The Lens Film Roll attribute of the Camera 3D node."""
+    film_roll_pivot_x: float
+    """The Film Roll Pivot X attribute of the Camera 3D node."""
+    film_roll_pivot_y: float
+    """The Film Roll Pivot Y attribute of the Camera 3D node."""
+    film_translate_x: float
+    """The Film Translate X attribute of the Camera 3D node."""
+    film_translate_y: float
+    """The Film Translate Y attribute of the Camera 3D node."""
+    focal: float
+    """The Focal length attribute of the Camera 3D node."""
+    fov: float
+    """The FOV (Field Of View) attribute of the Camera 3D node."""
+    gate_fit_type: str
+    """The Film Gate Resolution Fit Type attribute of the Camera 3D node."""
+    gate_type: str
+    """The Film Gate Type attribute of the Camera 3D node."""
+    interaxial: float
+    """The Interaxial attribute of the Camera 3D node."""
+    lens_squeeze: float
+    """The Lens Squeeze attribute of the Camera 3D node."""
+    near: float
+    """The Near clipping plane attribute of the Camera 3D node."""
+    post_scale: float
+    """The Post Scale attribute of the Camera 3D node."""
+    pre_scale: float
+    """The Pre Scale attribute of the Camera 3D node."""
+    roll: float
+    """The Roll attribute of the Camera 3D node."""
+    rotation: tuple
+    """The Rotation attribute of the Camera 3D node in the Action 3D space."""
+    rotation_order: str
+    """
+    The Rotation Order attribute of the Camera 3D node in the Action 3D space.
+    """
+    scale: tuple
+    """The Scale attribute of the Camera 3D node in the Action 3D space."""
+    shear: tuple
+    """The Shear attribute of the Camera 3D node in the Action 3D space."""
+    toe_in_adjust: float
+    """The Toe In Adjust attribute of the Camera 3D node."""
+    up: tuple
+    """The Up attribute of the Camera 3D node."""
+    zero_parallax: float
+    """The Zero Parallax attribute of the Camera 3D node."""
+
+class PyCoIBL(PyCoNode):
+    use_as_back: bool
+    """The Use As Back attribute of the IBL node."""
+
+class PyCoLight(PyCoNode):
+    active: bool
+    """The Active attribute of the Projector node."""
+    attenuation: float
+    """The Attenuation attribute of the Light node."""
+    colour: tuple
+    """The Colour attribute of the Light node."""
+    decay: float
+    """The Decay attribute of the Light node."""
+    decay_type: str
+    """The Decay Type attribute of the Light node."""
+    distance: float
+    """
+    The Distance attribute of the Light node. Only active when *target_mode* = False.
+    """
+    falloff: float
+    """The Fall Off attribute of the Light node."""
+    falloff_in: float
+    """The Attenuation attribute of the Light node."""
+    falloff_out: float
+    """The Attenuation attribute of the Light node."""
+    height: float
+    """The Height attribute of the Light node."""
+    intensity: float
+    """The Intensity attribute of the Light node."""
+    interest: tuple
+    """
+    The Interest attribute of the Light node. Only active when *target_mode* = True.
+    """
+    light_type: str
+    """The Light Type attribute of the Light node."""
+    roll: float
+    """
+    The Roll attribute of the Light node. Only active when *target_mode* = True.
+    """
+    rotation: tuple
+    """
+    The Rotation attribute of the Light node. Only active when *target_mode* = False.
+    """
+    shade: float
+    """The Shade attribute of the Light node."""
+    spread: float
+    """The Spread attribute of the Light node."""
+    target_mode: bool
+    """The Target Mode attribute of the Light node. True = Target, False = Free"""
+    width: float
+    """The Width attribute of the Light node."""
+
+class PyCoParticleAnimator(PyCoNode):
+    center: tuple
+    """The Center attribute of the Axis node in the Action 3D space."""
+    rotation: tuple
+    """The Rotation attribute of the Axis node in the Action 3D space."""
+    scale: tuple
+    """The Scale attribute of the Axis node in the Action 3D space."""
+    shear: tuple
+    """The Shear attribute of the Axis node in the Action 3D space."""
+
+class PyCoPerspectiveGrid(PyCoNode):
+    center: tuple
+    """The Center attribute of the Axis node in the Action 3D space."""
+    rotation: tuple
+    """The Rotation attribute of the Axis node in the Action 3D space."""
+    scale: tuple
+    """The Scale attribute of the Axis node in the Action 3D space."""
+    shear: tuple
+    """The Shear attribute of the Axis node in the Action 3D space."""
+
+class PyCoProjector(PyCoNode):
+    active: bool
+    """The Active attribute of the Projector node."""
+    aspect: float
+    """The Aspect attribute of the Projector node."""
+    blending: str
+    """The Blend Mode attribute of the Projector node."""
+    colour: tuple
+    """The Colour attribute of the Projector node."""
+    distance: float
+    """
+    The Distance attribute of the Projector node. Only active when *target_mode* = False.
+    """
+    far: float
+    """The Far attribute of the Projector node."""
+    fov: float
+    """The FOV attribute of the Projector node."""
+    front_face_only: bool
+    """The Front Face Only attribute of the Projector node."""
+    front_face_threshold: float
+    """The Front Face Only Threshold attribute of the Projector node."""
+    interest: tuple
+    """
+    The Interest attribute of the Projector node. Only active when *target_mode* = True.
+    """
+    motion_vectors_softness: float
+    """The Motion Vectors Softness attribute of the Projector node."""
+    near: float
+    """The Near attribute of the Projector node."""
+    occlusion: bool
+    """The Occlusion attribute of the Projector node."""
+    occlusion_softness: float
+    """The Occlusion Softness attribute of the Projector node."""
+    premultiplied: bool
+    """
+    The Premultiplied attribute of the Projector node. True = Premultiplied, False = Unpremultiplied
+    """
+    roll: float
+    """
+    The Roll attribute of the Projector node. Only active when *target_mode* = True.
+    """
+    rotation: tuple
+    """
+    The Rotation attribute of the Projector node. Only active when *target_mode* = False.
+    """
+    shaded: bool
+    """The Shaded attribute of the Projector node."""
+    target_mode: bool
+    """
+    The Target Mode attribute of the Projector node. True = Target, False = Free
+    """
+    transparency: float
+    """The Transparency attribute of the Projector node."""
+
+class PyCoShader(PyCoNode):
+    anisotropic: float
+    """The Specular Anisotropic attribute of the Shader node."""
+    clearcoat: float
+    """The Clearcoat attribute of the Shader node."""
+    clearcoat_gloss: float
+    """The Clearcoat Gloss attribute of the Shader node."""
+    emissive_colour: tuple
+    """The Emissive Colour attribute of the Shader node."""
+    emissive_intensity: float
+    """The Emissive Intensity attribute of the Shader node."""
+    metallic: float
+    """The Metallic attribute of the Shader node."""
+    roughness: float
+    """The Roughness attribute of the Shader node."""
+    sheen: float
+    """The Sheen attribute of the Shader node."""
+    sheen_tint: float
+    """The Sheen Tint attribute of the Shader node."""
+    specular_angle: float
+    """The Specular Angle attribute of the Shader node."""
+    specular_level: float
+    """The Specular Level attribute of the Shader node."""
+    specular_tint: float
+    """The Specular Tint attribute of the Shader node."""
+    subsurface: float
+    """The SubSurface attribute of the Shader node."""
+    thinfilm: float
+    """The Thin Film attribute of the Shader node."""
+    thinfilm_ior: float
+    """The Thin Film IOR attribute of the Shader node."""
+    thinfilm_thickness: float
+    """The Thin Film Thickness attribute of the Shader node."""
+
+class PyColourMgmtNode(PyNode):
+    active_image_area: float
+    """Image Ratio of the hdr effect."""
+    after_range: str
+    """The FX after range type of the MUX node."""
+    analysis_avr: float
+    """The analysis average value."""
+    analysis_max: float
+    """The analysis maximum value."""
+    analysis_min: float
+    """The analysis minimum value."""
+    apply_colour_coding: bool
+    """
+    Activate the propagation of the node colour coding to its resulting clip.
+    """
+    apply_trims: bool
+    """Apply trims when viewing or processing."""
+    back_clamp: str
+    """The Clamp attribute of the Back input of the Comp node."""
+    back_matte: str
+    """The Matte attribute of the Back input of the Comp node."""
+    back_premultiplied: bool
+    """The Premultiplied attribute of the Back input of the Comp node."""
+    back_transparency: float
+    """The transparency attribute of the Back input of the Comp node."""
+    before_range: str
+    """The FX before range type of the MUX node."""
+    bit_depth: str
+    """
+    The bit depth for the files written by the Write File node. This attribute resets to match file_type whenever file_type is set. If you require a specific bit depth, you must set bit_depth after setting file_type .
+    """
+    blend_type: str
+    """The blend type attribute of the Comp node."""
+    blur_height_low: float
+    """The low blur height attribute of the Frequency node."""
+    blur_height_mid: float
+    """The mid blur height attribute of the Frequency node."""
+    blur_mode_low: str
+    """The low blur mode attribute of the Frequency node."""
+    blur_mode_mid: str
+    """The mid blur mode attribute of the Frequency node."""
+    blur_width_low: float
+    """The low blur width attribute of the Frequency node."""
+    blur_width_mid: float
+    """The mid blur width attribute of the Frequency node."""
+    centre_scale: bool
+    """The centre and scale mode attribute of the Frequency node."""
+    chroma_weight: float
+    """The chroma weight attribute of the hdr effect."""
+    clips: int
+    """The Clips attribute of the Deal node."""
+    collapsed: bool
+    """The collapsed status of a node in the Batch schematic."""
+    colour: tuple
+    """The Colour attribute of the Compass node."""
+    colour_type: str
+    """
+    The Dpx Color space attribute for the files exported by the Write File node. Only relevant when file_type = 'Dpx'.
+    """
+    compress: bool
+    """
+    The compressing attribute for the files exported by the Write File node. Only relevant when file_type in 'OpenEXR', 'Sgi', 'Tiff'.
+    """
+    compress_mode: str
+    """
+    The compression format attribute for the specific File Types export by the Write File node. You must set compress_mode after setting file_type .
+    """
+    context_variables_from_project: bool
+    """Use the local or project context variables."""
+    create_clip: bool
+    """
+    The Create Open Clip attribute of the Write File node. Determines if an Open Clip is created by the Write File node.
+    """
+    create_clip_path: str
+    """
+    The path attribute where the Open Clip file is exported by the Write File node.
+    """
+    current_node: PyCoNode
+    """
+    Return the currently selected action object node in the Action schematic.
+    """
+    custom: bool
+    """Enable/Disable the Custom parameter in Colour Transform mode."""
+    data_window_max_x: int
+    """The data window maximum x attribute of the STMap node."""
+    data_window_max_y: int
+    """The data window maximum y attribute of the STMap node."""
+    data_window_min_x: bool
+    """The data window minimum x attribute of the STMap node."""
+    data_window_min_y: int
+    """The data window minimum y attribute of the STMap node."""
+    destination: tuple
+    """
+    Where the rendered clip is added.
+
+    The following arguments can be set:
+    """
+    display: str
+    """Set the Display in View Transform mode."""
+    display_window_max_x: int
+    """The display window maximum x attribute of the STMap node."""
+    display_window_max_y: int
+    """The display window maximum y attribute of the STMap node."""
+    display_window_min_x: int
+    """The display window minimum x attribute of the STMap node."""
+    display_window_min_y: int
+    """The display window minimum y attribute of the STMap node."""
+    file_type: str
+    """
+    The file type for the files written by the Write File node. Setting this attribute also overwrites format_extension , bit_depth and compress_mode to match the defaults for this file type.
+    """
+    filter_mode: str
+    """The filter mode attribute of the STMap node."""
+    flame_blend_mode: str
+    """
+    The Flame blending mode attribute used by the Comp node. Available only of blend_type = 'Flame'.
+    """
+    format: str
+    """The node format."""
+    format_extension: str
+    """
+    The file extension for the files written by the Write File node. This attribute resets to match file_type whenever file_type is set. If you require a specific extension, you must set format_extension after setting file_type .
+    """
+    frame_index_mode: str
+    """The frame index mode attribute of the Write File node."""
+    frame_padding: int
+    """The sequence padding attribute of the Write File node."""
+    frame_rate: str
+    """The frame rate."""
+    framing_mode: str
+    """The framing mode attribute of the STMap node."""
+    freeze_first_frame: bool
+    """The Freeze First Frame attribute of the Morph node."""
+    freeze_last_frame: bool
+    """The Freeze Last Frame attribute of the Morph node."""
+    front_clamp: str
+    """The Clamp attribute of the Front input of the Comp node."""
+    front_matte: str
+    """The Matte attribute of the Front input of the Comp node."""
+    front_premultiplied: bool
+    """The Premultiplied attribute of the Front input of the Comp node."""
+    front_transparency: float
+    """The transparency attribute of the Front input of the Comp node."""
+    full_resolution: bool
+    """Select the Full resolution."""
+    gain: float
+    """The Gain attribute of the Luma Matte node."""
+    gamma: float
+    """The gamma attribute of the hdr effect."""
+    gimp_blend_mode: str
+    """
+    The Gimp blending mode attribute used by the Comp node. Available only of blend_type = 'Gimp'.
+    """
+    handler_name: str
+    """Return the handler's name."""
+    hdr_mode: str
+    """The current HDR mode."""
+    height: int
+    """The height attribute of the Compass node."""
+    hide_input: bool
+    """
+    The hidden status of the Input links of the Mux node. True = Hide, False = Display.
+    """
+    hide_output: bool
+    """
+    The hidden status of the Output links of the Mux node. True = Hidden, False = Displayed.
+    """
+    highlight_clipping: float
+    """The highlight clipping attribute of the hdr effect."""
+    hue_blue: float
+    """The blue hue attribute of the hdr effect."""
+    hue_cyan: float
+    """The cyan hue attribute of the hdr effect."""
+    hue_green: float
+    """The green hue attribute of the hdr effect."""
+    hue_magenta: float
+    """The magenta hue attribute of the hdr effect."""
+    hue_red: float
+    """The red hue attribute of the hdr effect."""
+    hue_yellow: float
+    """The yellow hue attribute of the hdr effect."""
+    in_mark: PyTime
+    """The in mark."""
+    include_setup: bool
+    """
+    The Include Setup attribute of the Write File node. Determines if a Batch Setup file is created by the Write File node.
+    """
+    include_setup_path: str
+    """
+    The path attribute where the Batch setup file is exported by the Write File node.
+    """
+    input_amount: int
+    """The number of Inputs sockets of the Mux node."""
+    input_selection: int
+    """The currently active Input socket of the Mux node."""
+    interpolation: str
+    """The Frame Interpolation mode attribute of the Morph node."""
+    invert: bool
+    """
+    Enable/Disable the invert parameter in View Transform, Input Transform and Colour Transform (Custom).
+    """
+    level: int
+    """
+    The compression level attribute for the files exported by the Write File node. Only relevant when file_type = 'Png', or file_type = 'OpenEXR' and compress_mode = 'DWAx'.
+    """
+    lift: float
+    """The lift attribute of the hdr effect."""
+    lock_trims: bool
+    """Prevent any modification to the trims."""
+    mastering_display_id: int
+    """Mastering Display Id / None if not available."""
+    matte_composition: str
+    """The Matte Composition attribute of the Comp node."""
+    matte_correlation: str
+    """The Matte Correlation attribute of the Comp node."""
+    maximum: float
+    """The Maximum attribute of the Luma Matte node."""
+    media_path: str
+    """
+    The path attribute where the rendered clip is exported by the Write File node.
+    """
+    media_path_pattern: str
+    """
+    The pattern attribute used to be generated the clip name by the Write File node.. Tokens can be included in the string, and are resolved by the Write File node at export time.
+    """
+    metadata_overlay: bool
+    """Burn in the current Metadata Overlay setup on export."""
+    metadata_overlay_context: str
+    """Context used by the Write File node for the metadata overlay context."""
+    mid_contrast_bias: float
+    """The mid contrast bias attribute of the hdr effect."""
+    minimum: float
+    """The Minimum attribute of the Luma Matte node."""
+    mix: float
+    """The Mix attribute of the Morph node."""
+    ml_engine_cache: bool
+    """The ML Engine Cache attribute of the Morph node. (Rocky Linux only)"""
+    mode: str
+    """The Separate mode."""
+    motion_analysis_quality: str
+    """The Motion Analysis Quality attribute of the Morph node."""
+    motion_blur: bool
+    """The Motion Blur Active attribute of the Morph node."""
+    nb_channels: int
+    """The number of channels when the format is set to Multi-Channel."""
+    offset: int
+    """The export offset attribute of the Write File node."""
+    offset_x: float
+    """The offset x attribute of the STMap node."""
+    offset_y: float
+    """The offset y attribute of the STMap node."""
+    out_mark: PyTime
+    """The out mark."""
+    output_clamp: str
+    """The Clamp attribute of the outputs of the Comp node."""
+    output_premultiplied: bool
+    """The Premultiplied attribute of the outputs of the Comp node."""
+    over: int
+    """The Over attribute of the Compound node."""
+    photoshop_blend_mode: str
+    """
+    The Photoshop blending mode attribute used by the Comp node. Available only of blend_type = 'Photoshop'.
+    """
+    plugin_name: str
+    """Return the name of the node's active plugin."""
+    quality: int
+    """
+    The Jpeg Quality attribute for the files exported by the Write File node. Only relevant when file_type = 'Jpeg'.
+    """
+    range_active: bool
+    """The FX Range status of the Mux node. True = Active, False = Disabled."""
+    range_end: int
+    """The FX Range end frame of the MUX node."""
+    range_first_frame: int
+    """The Range's First Frame attribute of the Morph node."""
+    range_last_frame: int
+    """The Range's Last Frame attribute of the Morph node."""
+    range_mode: str
+    """The Range mode attribute of the Morph node."""
+    range_offset: bool
+    """Activate the Range Timecode Offset"""
+    range_start: int
+    """The FX Range start frame of the MUX node."""
+    record_timecode: PyTime
+    """The record timecode."""
+    reference: bool
+    """The Motion Blur Reference Active attribute of the Morph node."""
+    reference_colour: tuple
+    """The Motion Blur Reference colour attribute of the Morph node."""
+    reference_position_x: int
+    """The Motion Blur Reference Position X attribute of the Morph node."""
+    reference_position_y: int
+    """The Motion Blur Reference Position Y attribute of the Morph node."""
+    rendering_platform: str
+    """The Rendering Platform attribute of the Morph node. (Rocky Linux only)"""
+    repeat_mode: str
+    """The repeat mode attribute of the STMap node."""
+    samples: int
+    """The Motion Blur Samples attribute of the Morph node."""
+    saturation_blue: float
+    """The blue saturation attribute of the hdr effect."""
+    saturation_cyan: float
+    """The cyan saturation attribute of the hdr effect."""
+    saturation_gain: float
+    """The saturation gain attribute of the hdr effect."""
+    saturation_green: float
+    """The green saturation attribute of the hdr effect."""
+    saturation_magenta: float
+    """The magenta saturation attribute of the hdr effect."""
+    saturation_red: float
+    """The red saturation attribute of the hdr effect."""
+    saturation_yellow: float
+    """The yellow saturation attribute of the hdr effect."""
+    selected_nodes: list
+    """
+    The list of Action object nodes that are currently selected in the Action schematic.
+    """
+    separation: str
+    """The separation attribute of the Frequency node."""
+    setup_mode: bool
+    """Select the Range setup mode."""
+    shader_name: str
+    """Return the current shader name."""
+    shot_name: str
+    """
+    The shot name of the node in the Batch schematic, resolving tokens if any are present.
+    """
+    shutter: float
+    """The Motion Blur Shutter attribute of the Morph node."""
+    smart_replace: bool
+    """
+    Replace the destination timeline segment with the new rendered clip after the rendering is complete.
+    """
+    source_timecode: PyTime
+    """The source timecode."""
+    start_frame: int
+    """The Start Frame attribute of the Deal node."""
+    stereo: bool
+    """The node format."""
+    swap_inputs: bool
+    """The status attribute of the Swap Inputs function of the Comp node."""
+    tagged_colour_space: str
+    """
+    Set the tagged colour space in Tag Only, View Transform and Colour Transform modes. Set the input colour space in Input Transform mode.
+    """
+    tags: list
+    """The tag list of the render node."""
+    tape_name: str
+    """The tape name."""
+    target_display_id: int
+    """Target Display Id / None if not available."""
+    timing_offset: int
+    """The Timing Offset value of the Mux node."""
+    tone_detail: float
+    """The tone detail attribute of the hdr effect."""
+    tone_offset_max: float
+    """The max tone offset attribute of the hdr effect."""
+    tone_offset_mid: float
+    """The mid tone offset attribute of the hdr effect."""
+    tone_offset_min: float
+    """The min tone offset attribute of the hdr effect."""
+    transfer_type: str
+    """
+    The Dpx Transfer type attribute for the files exported by the Write File node. Only relevant when file_type = 'Dpx'.
+    """
+    use_16_bit_fp: bool
+    """The Bit Depth attribute of the Morph node. (Rocky Linux only)"""
+    version_mode: Any | None
+    """
+    The versioning mode of the Open Clip exported by the Write File node. Only available if create_clip = True.
+    """
+    version_name: str
+    """
+    The name attribute of the version in the Open Clip exported by the Write File node. The token can be used in the string.
+    """
+    version_number: int
+    """
+    The version number in the Open Clip. Only available if version_mode = 'Custom Version'.
+    """
+    version_padding: int
+    """The padding attribute used for the version number."""
+    view: str
+    """Set the View in View Transform mode."""
+    width: int
+    """The width attribute of the Compass node."""
+    windows_source: str
+    """The framing mode attribute of the STMap node."""
+    working_space: str
+    """Set the Working Space in Input Transform mode."""
+
+class PyCombineNode(PyNode):
+    mode: str
+    """The Combine mode attribute of the Combine node."""
+
+class PyCompNode(PyNode):
+    back_clamp: str
+    """The Clamp attribute of the Back input of the Comp node."""
+    back_matte: str
+    """The Matte attribute of the Back input of the Comp node."""
+    back_premultiplied: bool
+    """The Premultiplied attribute of the Back input of the Comp node."""
+    back_transparency: float
+    """The transparency attribute of the Back input of the Comp node."""
+    blend_type: str
+    """The blend type attribute of the Comp node."""
+    flame_blend_mode: str
+    """
+    The Flame blending mode attribute used by the Comp node. Available only of blend_type = 'Flame'.
+    """
+    front_clamp: str
+    """The Clamp attribute of the Front input of the Comp node."""
+    front_matte: str
+    """The Matte attribute of the Front input of the Comp node."""
+    front_premultiplied: bool
+    """The Premultiplied attribute of the Front input of the Comp node."""
+    front_transparency: float
+    """The transparency attribute of the Front input of the Comp node."""
+    gimp_blend_mode: str
+    """
+    The Gimp blending mode attribute used by the Comp node. Available only of blend_type = 'Gimp'.
+    """
+    matte_composition: str
+    """The Matte Composition attribute of the Comp node."""
+    matte_correlation: str
+    """The Matte Correlation attribute of the Comp node."""
+    output_clamp: str
+    """The Clamp attribute of the outputs of the Comp node."""
+    output_premultiplied: bool
+    """The Premultiplied attribute of the outputs of the Comp node."""
+    photoshop_blend_mode: str
+    """
+    The Photoshop blending mode attribute used by the Comp node. Available only of blend_type = 'Photoshop'.
+    """
+    swap_inputs: bool
+    """The status attribute of the Swap Inputs function of the Comp node."""
+
+class PyCompoundNode(PyNode):
+    over: int
+    """The Over attribute of the Compound node."""
+
+class PyCryptomatteNode(PyNode):
+    collapsed: bool
+    """The collapsed status of a node in the Batch schematic."""
+
+class PyDealNode(PyNode):
+    clips: int
+    """The Clips attribute of the Deal node."""
+    start_frame: int
+    """The Start Frame attribute of the Deal node."""
+
+class PyDepthOfFieldNode(PyNode):
+    collapsed: bool
+    """The collapsed status of a node in the Batch schematic."""
+
+class PyFrequencyNode(PyNode):
+    blur_height_low: float
+    """The low blur height attribute of the Frequency node."""
+    blur_height_mid: float
+    """The mid blur height attribute of the Frequency node."""
+    blur_mode_low: str
+    """The low blur mode attribute of the Frequency node."""
+    blur_mode_mid: str
+    """The mid blur mode attribute of the Frequency node."""
+    blur_width_low: float
+    """The low blur width attribute of the Frequency node."""
+    blur_width_mid: float
+    """The mid blur width attribute of the Frequency node."""
+    centre_scale: bool
+    """The centre and scale mode attribute of the Frequency node."""
+    separation: str
+    """The separation attribute of the Frequency node."""
+
+class PyLumaMatteNode(PyNode):
+    gain: float
+    """The Gain attribute of the Luma Matte node."""
+    maximum: float
+    """The Maximum attribute of the Luma Matte node."""
+    minimum: float
+    """The Minimum attribute of the Luma Matte node."""
+
+class PyMUXNode(PyNode):
+    after_range: str
+    """The FX after range type of the MUX node."""
+    before_range: str
+    """The FX before range type of the MUX node."""
+    collapsed: bool
+    """The collapsed status of a node in the Batch schematic."""
+    hide_input: bool
+    """
+    The hidden status of the Input links of the Mux node. True = Hide, False = Display.
+    """
+    hide_output: bool
+    """
+    The hidden status of the Output links of the Mux node. True = Hidden, False = Displayed.
+    """
+    input_amount: int
+    """The number of Inputs sockets of the Mux node."""
+    input_selection: int
+    """The currently active Input socket of the Mux node."""
+    range_active: bool
+    """The FX Range status of the Mux node. True = Active, False = Disabled."""
+    range_end: int
+    """The FX Range end frame of the MUX node."""
+    range_start: int
+    """The FX Range start frame of the MUX node."""
+    timing_offset: int
+    """The Timing Offset value of the Mux node."""
+
+class PyMatchboxNode(PyNode):
+    shader_name: str
+    """Return the current shader name."""
+
+class PyMotionConvertNode(PyNode):
+    collapsed: bool
+    """The collapsed status of a node in the Batch schematic."""
+
+class PyNoteNode(PyNode):
+    collapsed: bool
+    """The collapsed status of a node in the Batch schematic."""
+
+class PyOpenFXNode(PyNode):
+    collapsed: bool
+    """The collapsed status of a node in the Batch schematic."""
+    plugin_name: str
+    """Return the name of the node's active plugin."""
+
+class PyPyboxNode(PyNode):
+    handler_name: str
+    """Return the handler's name."""
+
+class PySTMapNode(PyNode):
+    data_window_max_x: int
+    """The data window maximum x attribute of the STMap node."""
+    data_window_max_y: int
+    """The data window maximum y attribute of the STMap node."""
+    data_window_min_x: bool
+    """The data window minimum x attribute of the STMap node."""
+    data_window_min_y: int
+    """The data window minimum y attribute of the STMap node."""
+    display_window_max_x: int
+    """The display window maximum x attribute of the STMap node."""
+    display_window_max_y: int
+    """The display window maximum y attribute of the STMap node."""
+    display_window_min_x: int
+    """The display window minimum x attribute of the STMap node."""
+    display_window_min_y: int
+    """The display window minimum y attribute of the STMap node."""
+    filter_mode: str
+    """The filter mode attribute of the STMap node."""
+    framing_mode: str
+    """The framing mode attribute of the STMap node."""
+    offset_x: float
+    """The offset x attribute of the STMap node."""
+    offset_y: float
+    """The offset y attribute of the STMap node."""
+    repeat_mode: str
+    """The repeat mode attribute of the STMap node."""
+    windows_source: str
+    """The framing mode attribute of the STMap node."""
+
+class PySeparateNode(PyNode):
+    collapsed: bool
+    """The collapsed status of a node in the Batch schematic."""
+    mode: str
+    """The Separate mode."""
+
+class PyStereoToolboxNode(PyNode):
+    collapsed: bool
+    """The collapsed status of a node in the Batch schematic."""
 
 
 batch: PyBatch = ...
@@ -47,13 +1021,13 @@ class PyActionFamilyNode(PyNode):
     right_tabs = ...
     sockets: dict[str, Any] = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+    def cache_range(arg1: "PyNode", start: Any = None, end: Any = None) -> int:
         """
         Cache the Node result.
         Keyword arguments:
@@ -62,19 +1036,19 @@ class PyActionFamilyNode(PyNode):
         """
         ...
 
-    def clear_schematic(arg1: PyActionFamilyNode) -> bool:
+    def clear_schematic(arg1: "PyActionFamilyNode") -> bool:
         """
         Clear the Action/Image/GMaskTracer schematic of all nodes.
         """
         ...
 
-    def clear_schematic_colour(arg1: PyNode) -> None:
+    def clear_schematic_colour(arg1: "PyNode") -> None:
         """
         Clear the schematic colour of the Node.
         """
         ...
 
-    def connect_nodes(arg1: PyActionFamilyNode, parent_node: PyFlameObject, child_node: PyFlameObject, link_type: str = 'Default') -> bool:
+    def connect_nodes(arg1: "PyActionFamilyNode", parent_node: "PyFlameObject", child_node: "PyFlameObject", link_type: str = 'Default') -> bool:
         """
         Connect two nodes in the Action/Image/GMaskTracer schematic.
         Keyword argument:
@@ -91,13 +1065,13 @@ class PyActionFamilyNode(PyNode):
         """
         ...
 
-    def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
+    def delete(arg1: "PyFlameObject", confirm: bool = True) -> bool:
         """
         Delete the node.
         """
         ...
 
-    def disconnect_nodes(arg1: PyActionFamilyNode, parent_node: PyFlameObject, child_node: PyFlameObject, link_type: str = 'Default') -> bool:
+    def disconnect_nodes(arg1: "PyActionFamilyNode", parent_node: "PyFlameObject", child_node: "PyFlameObject", link_type: str = 'Default') -> bool:
         """
         Disconnect two nodes in the Action/Image/GMaskTracer schematic.
         Keyword argument:
@@ -105,7 +1079,7 @@ class PyActionFamilyNode(PyNode):
         """
         ...
 
-    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+    def duplicate(arg1: "PyNode", keep_node_connections: bool = False) -> Any:
         """
         Duplicate the node.
         """
@@ -126,25 +1100,25 @@ class PyActionFamilyNode(PyNode):
         """
         ...
 
-    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def load_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def organize(arg1: PyActionFamilyNode) -> bool:
+    def organize(arg1: "PyActionFamilyNode") -> bool:
         """
         Clean up the Action/Image/GMaskTracer schematic.
         """
         ...
 
-    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def save_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+    def set_context(arg1: "PyNode", index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
         """
@@ -170,10 +1144,10 @@ class PyActionNode(PyActionFamilyNode):
     right_tabs = ...
     sockets: dict[str, Any] = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
     def add_media(arg1: PyActionFamilyNode) -> Any:
@@ -183,7 +1157,7 @@ class PyActionNode(PyActionFamilyNode):
         """
         ...
 
-    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+    def cache_range(arg1: "PyNode", start: Any = None, end: Any = None) -> int:
         """
         Cache the Node result.
         Keyword arguments:
@@ -198,13 +1172,13 @@ class PyActionNode(PyActionFamilyNode):
         """
         ...
 
-    def clear_schematic_colour(arg1: PyNode) -> None:
+    def clear_schematic_colour(arg1: "PyNode") -> None:
         """
         Clear the schematic colour of the Node.
         """
         ...
 
-    def connect_nodes(arg1: PyActionFamilyNode, parent_node: PyFlameObject, child_node: PyFlameObject, link_type: str = 'Default') -> bool:
+    def connect_nodes(arg1: PyActionFamilyNode, parent_node: "PyFlameObject", child_node: "PyFlameObject", link_type: str = 'Default') -> bool:
         """
         Connect two nodes in the Action/Image/GMaskTracer schematic.
         Keyword argument:
@@ -221,7 +1195,7 @@ class PyActionNode(PyActionFamilyNode):
         """
         ...
 
-    def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
+    def delete(arg1: "PyFlameObject", confirm: bool = True) -> bool:
         """
         Delete the node.
         """
@@ -235,7 +1209,7 @@ class PyActionNode(PyActionFamilyNode):
         """
         ...
 
-    def disconnect_nodes(arg1: PyActionFamilyNode, parent_node: PyFlameObject, child_node: PyFlameObject, link_type: str = 'Default') -> bool:
+    def disconnect_nodes(arg1: PyActionFamilyNode, parent_node: "PyFlameObject", child_node: "PyFlameObject", link_type: str = 'Default') -> bool:
         """
         Disconnect two nodes in the Action/Image/GMaskTracer schematic.
         Keyword argument:
@@ -243,7 +1217,7 @@ class PyActionNode(PyActionFamilyNode):
         """
         ...
 
-    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+    def duplicate(arg1: "PyNode", keep_node_connections: bool = False) -> Any:
         """
         Duplicate the node.
         """
@@ -306,7 +1280,7 @@ class PyActionNode(PyActionFamilyNode):
         """
         ...
 
-    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def load_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
@@ -335,13 +1309,13 @@ class PyActionNode(PyActionFamilyNode):
         """
         ...
 
-    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def save_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+    def set_context(arg1: "PyNode", index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
         """
@@ -355,31 +1329,31 @@ class PyArchiveEntry(PyFlameObject):
     attributes: list[PyAttribute] = ...
     parent: "PyFlameObject" = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def clear_colour(arg1: PyArchiveEntry) -> None:
+    def clear_colour(arg1: "PyArchiveEntry") -> None:
         """
         Clear the colour of an object in the Media Panel.
         """
         ...
 
-    def commit(arg1: PyArchiveEntry) -> None:
+    def commit(arg1: "PyArchiveEntry") -> None:
         """
         Commit to disk the Media Panel object or its closest container possible.
         """
         ...
 
-    def get_wiretap_node_id(arg1: PyArchiveEntry) -> str:
+    def get_wiretap_node_id(arg1: "PyArchiveEntry") -> str:
         """
         Return the Wiretap Node ID of the Flame object, but only if the object is in the Media Panel.
         """
         ...
 
-    def get_wiretap_storage_id(arg1: PyArchiveEntry) -> str:
+    def get_wiretap_storage_id(arg1: "PyArchiveEntry") -> str:
         """
         Return the Wiretap server's storage ID for the Flame object, but only if the object is in the Media Panel.
         """
@@ -392,152 +1366,152 @@ class PyAttribute:
     """
     values: list[Any] = ...
 
-    def __add__(arg1: PyAttribute, arg2: float) -> Any:
+    def __add__(arg1: "PyAttribute", arg2: str) -> Any:
         ...
 
     @overload
-    def __add__(arg1: PyAttribute, arg2: int) -> Any:
+    def __add__(arg1: "PyAttribute", arg2: str) -> Any:
         ...
 
     @overload
-    def __add__(arg1: PyAttribute, arg2: str) -> Any:
+    def __add__(arg1: "PyAttribute", arg2: str) -> Any:
         ...
 
-    def __eq__(arg1: PyAttribute, arg2: Any) -> bool:
+    def __eq__(arg1: "PyAttribute", arg2: Any) -> bool:
         ...
 
-    def __floordiv__(arg1: PyAttribute, arg2: Any) -> Any:
+    def __floordiv__(arg1: "PyAttribute", arg2: Any) -> Any:
         ...
 
-    def __ge__(arg1: PyAttribute, arg2: float) -> Any:
-        ...
-
-    @overload
-    def __ge__(arg1: PyAttribute, arg2: int) -> Any:
-        ...
-
-    def __gt__(arg1: PyAttribute, arg2: float) -> Any:
+    def __ge__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
     @overload
-    def __gt__(arg1: PyAttribute, arg2: int) -> Any:
+    def __ge__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
-    def __iadd__(arg1: Any, arg2: float) -> Any:
+    def __gt__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
     @overload
-    def __iadd__(arg1: Any, arg2: int) -> Any:
+    def __gt__(arg1: "PyAttribute", arg2: int) -> Any:
+        ...
+
+    def __iadd__(arg1: Any, arg2: str) -> Any:
         ...
 
     @overload
     def __iadd__(arg1: Any, arg2: str) -> Any:
         ...
 
-    def __idiv__(arg1: Any, arg2: float) -> Any:
+    @overload
+    def __iadd__(arg1: Any, arg2: str) -> Any:
+        ...
+
+    def __idiv__(arg1: Any, arg2: int) -> Any:
         ...
 
     @overload
     def __idiv__(arg1: Any, arg2: int) -> Any:
         ...
 
-    def __imul__(arg1: Any, arg2: float) -> Any:
+    def __imul__(arg1: Any, arg2: int) -> Any:
         ...
 
     @overload
     def __imul__(arg1: Any, arg2: int) -> Any:
         ...
 
-    def __isub__(arg1: Any, arg2: float) -> Any:
+    def __isub__(arg1: Any, arg2: int) -> Any:
         ...
 
     @overload
     def __isub__(arg1: Any, arg2: int) -> Any:
         ...
 
-    def __le__(arg1: PyAttribute, arg2: float) -> Any:
+    def __le__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
     @overload
-    def __le__(arg1: PyAttribute, arg2: int) -> Any:
+    def __le__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
-    def __lt__(arg1: PyAttribute, arg2: float) -> Any:
-        ...
-
-    @overload
-    def __lt__(arg1: PyAttribute, arg2: int) -> Any:
-        ...
-
-    def __mul__(arg1: PyAttribute, arg2: float) -> Any:
+    def __lt__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
     @overload
-    def __mul__(arg1: PyAttribute, arg2: int) -> Any:
+    def __lt__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
-    def __ne__(arg1: PyAttribute, arg2: Any) -> bool:
-        ...
-
-    def __radd__(arg1: PyAttribute, arg2: float) -> Any:
+    def __mul__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
     @overload
-    def __radd__(arg1: PyAttribute, arg2: int) -> Any:
+    def __mul__(arg1: "PyAttribute", arg2: int) -> Any:
+        ...
+
+    def __ne__(arg1: "PyAttribute", arg2: Any) -> bool:
+        ...
+
+    def __radd__(arg1: "PyAttribute", arg2: str) -> Any:
         ...
 
     @overload
-    def __radd__(arg1: PyAttribute, arg2: str) -> Any:
-        ...
-
-    def __repr__(arg1: PyAttribute) -> Any:
-        ...
-
-    def __rmul__(arg1: PyAttribute, arg2: float) -> Any:
+    def __radd__(arg1: "PyAttribute", arg2: str) -> Any:
         ...
 
     @overload
-    def __rmul__(arg1: PyAttribute, arg2: int) -> Any:
+    def __radd__(arg1: "PyAttribute", arg2: str) -> Any:
         ...
 
-    def __rsub__(arg1: PyAttribute, arg2: float) -> Any:
+    def __repr__(arg1: "PyAttribute") -> Any:
         ...
 
-    @overload
-    def __rsub__(arg1: PyAttribute, arg2: int) -> Any:
-        ...
-
-    def __rtruediv__(arg1: PyAttribute, arg2: float) -> Any:
+    def __rmul__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
     @overload
-    def __rtruediv__(arg1: PyAttribute, arg2: int) -> Any:
+    def __rmul__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
-    def __str__(arg1: PyAttribute) -> str:
-        ...
-
-    def __sub__(arg1: PyAttribute, arg2: float) -> Any:
+    def __rsub__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
     @overload
-    def __sub__(arg1: PyAttribute, arg2: int) -> Any:
+    def __rsub__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
-    def __truediv__(arg1: PyAttribute, arg2: float) -> Any:
+    def __rtruediv__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
     @overload
-    def __truediv__(arg1: PyAttribute, arg2: int) -> Any:
+    def __rtruediv__(arg1: "PyAttribute", arg2: int) -> Any:
         ...
 
-    def get_value(arg1: PyAttribute) -> Any:
+    def __str__(arg1: "PyAttribute") -> str:
+        ...
+
+    def __sub__(arg1: "PyAttribute", arg2: int) -> Any:
+        ...
+
+    @overload
+    def __sub__(arg1: "PyAttribute", arg2: int) -> Any:
+        ...
+
+    def __truediv__(arg1: "PyAttribute", arg2: int) -> Any:
+        ...
+
+    @overload
+    def __truediv__(arg1: "PyAttribute", arg2: int) -> Any:
+        ...
+
+    def get_value(arg1: "PyAttribute") -> Any:
         """
         Get the value of an attribute.
         """
         ...
 
-    def set_value(arg1: PyAttribute, arg2: Any) -> bool:
+    def set_value(arg1: "PyAttribute", arg2: Any) -> bool:
         """
         Set the value of an attribute.
         """
@@ -553,10 +1527,10 @@ class PyAudioTrack(PyFlameObject):
     parent: "PyFlameObject" = ...
     stereo: bool = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
     def copy_to_media_panel(arg1: "PyAudioTrack", destination: PyArchiveEntry, duplicate_action: str = 'add') -> "PyClip":
@@ -583,13 +1557,13 @@ class PyBatch(PyFlameObject):
     reels: list[PyReel] = ...
     shelf_reels: list[PyReel] = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def append_setup(arg1: PyBatch, setup_path: str, confirm: bool = True) -> bool:
+    def append_setup(arg1: "PyBatch", setup_path: str, confirm: bool = True) -> bool:
         """
         Append a Batch setup file to the existing Batch setup.
         Keywords arguments:
@@ -598,56 +1572,56 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def append_to_batch(arg1: PyBatch, batch_iteration: PyBatchIteration) -> bool:
+    def append_to_batch(arg1: "PyBatch", batch_iteration: "PyBatchIteration") -> bool:
         """
         Append a Batch Iteration object to the current Batch Group. A duplicate Batch Iteration object is renamed to the next available *vDD*. Batch Iteration objects are displayed in the Iterations folder. Iterations folder is a UI construction, not accessible directly.
         """
         ...
 
-    def append_to_setup(arg1: PyBatch, batch_iteration: PyBatchIteration) -> bool:
+    def append_to_setup(arg1: "PyBatch", batch_iteration: "PyBatchIteration") -> bool:
         """
         Append a Batch Iteration object to the Batch Group's setup.
         """
         ...
 
-    def clear(arg1: PyBatch, confirm: bool = True) -> bool:
+    def clear(arg1: "PyBatch", confirm: bool = True) -> bool:
         """
         Clear the Batch Group.
         """
         ...
 
-    def clear_all_contexts(arg1: PyBatch) -> bool:
+    def clear_all_contexts(arg1: "PyBatch") -> bool:
         """
         Clear all registered Context views in the Batch Group.
         """
         ...
 
-    def clear_colour(arg1: PyBatch) -> None:
+    def clear_colour(arg1: "PyBatch") -> None:
         """
         Clear the colour of an object in the Media Panel.
         """
         ...
 
-    def clear_context(arg1: PyBatch, index: int) -> bool:
+    def clear_context(arg1: "PyBatch", index: int) -> bool:
         """
         Clear a specific Context view in the Batch Group.
         """
         ...
 
-    def clear_setup(arg1: PyBatch) -> bool:
+    def clear_setup(arg1: "PyBatch") -> bool:
         """
         Clear the Batch Group's setup.
         """
         ...
 
-    def close(arg1: PyBatch) -> bool:
+    def close(arg1: "PyBatch") -> bool:
         """
         Close the Batch Group. You cannot close the Batch Group currently selected.
         Closing a Batch Group frees up the application it occupies when open. The size of the used memory is significant if in Batch Group schematic hosts many Action nodes with textures or 3D geoms.
         """
         ...
 
-    def connect_nodes(arg1: PyBatch, output_node: PyNode, output_socket_name: str = 'Default', input_node: PyNode  = None, input_socket_name: str = 'Default') -> bool:
+    def connect_nodes(arg1: "PyBatch", output_node: "PyNode", output_socket_name: str = 'Default', input_node: "PyNode"  = None, input_socket_name: str = 'Default') -> bool:
         """
         Connect two nodes in the Batch schematic.
         Keyword arguments:
@@ -692,7 +1666,7 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def disconnect_node(arg1: PyBatch, node: PyNode, input_socket_name: str = '') -> bool:
+    def disconnect_node(arg1: "PyBatch", node: "PyNode", input_socket_name: str = '') -> bool:
         """
         Disconnect the input links of a given node, given an input socket.
         Keyword arguments:
@@ -709,13 +1683,13 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def frame_all(arg1: PyBatch) -> bool:
+    def frame_all(arg1: "PyBatch") -> bool:
         """
         Set the Batch schematic view to frame all the nodes in the Batch schematic.
         """
         ...
 
-    def frame_selected(arg1: PyBatch) -> bool:
+    def frame_selected(arg1: "PyBatch") -> bool:
         """
         Set the Batch schematic view to frame the nodes selected in the Batch schematic.
         """
@@ -729,7 +1703,7 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def go_to(arg1: PyBatch) -> bool:
+    def go_to(arg1: "PyBatch") -> bool:
         """
         Display and set the Batch tab as the active environment.
         """
@@ -765,7 +1739,7 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def load_setup(arg1: PyBatch, setup_path: str) -> bool:
+    def load_setup(arg1: "PyBatch", setup_path: str) -> bool:
         """
         Load a Batch setup from disk and replace the current Batch Group's setup.
          Keyword argument:
@@ -773,7 +1747,7 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def mimic_link(arg1: PyBatch, leader_node: PyNode, follower_node: PyNode) -> bool:
+    def mimic_link(arg1: "PyBatch", leader_node: "PyNode", follower_node: "PyNode") -> bool:
         """
         Create a Mimic Link between two Batch nodes. They must be of the same node_type.
         Keyword arguments:
@@ -782,25 +1756,25 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def open(arg1: PyBatch) -> bool:
+    def open(arg1: "PyBatch") -> bool:
         """
         Open the Batch Group and display it in the Batch view.
         """
         ...
 
-    def open_as_batch_group(arg1: PyBatch, confirm: bool = True) -> bool:
+    def open_as_batch_group(arg1: "PyBatch", confirm: bool = True) -> bool:
         """
         Open a Batch Group as a new Batch Group, adding it to PyDesktop.batch_groups. Can only be called from a Library.
         """
         ...
 
-    def organize(arg1: PyBatch) -> bool:
+    def organize(arg1: "PyBatch") -> bool:
         """
         Clean up the nodes layout in the Batch schematic.
         """
         ...
 
-    def render(arg1: PyBatch, render_option: str = 'Foreground', generate_proxies: bool = False, include_history: bool = False) -> bool:
+    def render(arg1: "PyBatch", render_option: str = 'Foreground', generate_proxies: bool = False, include_history: bool = False) -> bool:
         """
         Trigger the rendering of the Batch Group setup. Every active Render and Write File nodes render. If specified render_option is not supported by the workstation, returns an error.
         Keyword arguments:
@@ -810,7 +1784,7 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def replace_setup(arg1: PyBatch, batch_iteration: PyBatchIteration, confirm: bool = True) -> bool:
+    def replace_setup(arg1: "PyBatch", batch_iteration: "PyBatchIteration", confirm: bool = True) -> bool:
         """
         Replace the Batch Group setup with the specified Batch Iteration. Cannot be called on the Batch Group currently selected and displayed in the Batch view.
         """
@@ -828,7 +1802,7 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def save_setup(arg1: PyBatch, setup_path: str) -> bool:
+    def save_setup(arg1: "PyBatch", setup_path: str) -> bool:
         """
         Save the Batch Group setup to disk. Includes media paths for clip node object, but not the media files themselves.
         Keyword argument:
@@ -836,7 +1810,7 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def select_nodes(arg1: PyBatch, nodes: Any) -> bool:
+    def select_nodes(arg1: "PyBatch", nodes: Any) -> bool:
         """
         Select nodes.
         Keyword argument:
@@ -844,7 +1818,7 @@ class PyBatch(PyFlameObject):
         """
         ...
 
-    def set_viewport_layout(arg1: PyBatch, num_views: Any) -> bool:
+    def set_viewport_layout(arg1: "PyBatch", num_views: Any) -> bool:
         """
         Set the viewport layout for Batch.
         Keyword argument:
@@ -861,10 +1835,10 @@ class PyBatchIteration(PyArchiveEntry):
     iteration_number: int = ...
     parent: "PyFlameObject" = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
     def clear_colour(arg1: PyArchiveEntry) -> None:
@@ -891,7 +1865,7 @@ class PyBatchIteration(PyArchiveEntry):
         """
         ...
 
-    def open_as_batch_group(arg1: PyBatchIteration, confirm: bool = True) -> bool:
+    def open_as_batch_group(arg1: "PyBatchIteration", confirm: bool = True) -> bool:
         """
         Open a Batch Iteration as a new Batch Group, adding it to PyDesktop.batch_groups. Can only be called from a Library.
         """
@@ -915,7 +1889,7 @@ class PyBrowser:
     sequence_mode: str = ...
     width: int | None = ...
 
-    def show(arg1: PyBrowser, default_path: str, extension: Any = '', select_directory: bool = False, multi_selection: bool = False, include_resolution: Any = False, title: str = 'Load') -> None:
+    def show(arg1: "PyBrowser", default_path: str, extension: Any = '', select_directory: bool = False, multi_selection: bool = False, include_resolution: Any = False, title: str = 'Load') -> None:
         """
         Show the file browser.Keyword arguments:
         default_path -- Set the path.
@@ -962,13 +1936,13 @@ class PyClip(PyArchiveEntry):
     versions: list[PyVersion] = ...
     width: int = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def cache_media(arg1: PyClip, mode: str = 'current') -> bool:
+    def cache_media(arg1: "PyClip", mode: str = 'current') -> bool:
         """
         Cache the Clip's linked media.
         Keyword argument:
@@ -976,7 +1950,7 @@ class PyClip(PyArchiveEntry):
         """
         ...
 
-    def change_dominance(arg1: PyClip, scan_mode: str) -> None:
+    def change_dominance(arg1: "PyClip", scan_mode: str) -> None:
         """
         Change the Clip's dominance. Changes only the clip's metadata.
         Keyword argument:
@@ -984,7 +1958,7 @@ class PyClip(PyArchiveEntry):
         """
         ...
 
-    def change_start_frame(arg1: PyClip, start_frame: int, use_segment_connections: bool = True) -> None:
+    def change_start_frame(arg1: "PyClip", start_frame: int, use_segment_connections: bool = True) -> None:
         """
         Modify the start frame of a source Clip.
         Keywords argument:
@@ -999,7 +1973,7 @@ class PyClip(PyArchiveEntry):
         """
         ...
 
-    def close_container(arg1: PyClip) -> None:
+    def close_container(arg1: "PyClip") -> None:
         """
         Close the container timeline if the Clip is inside a container.
         """
@@ -1018,13 +1992,13 @@ class PyClip(PyArchiveEntry):
         """
         ...
 
-    def cut(arg1: PyClip, cut_time: PyTime) -> None:
+    def cut(arg1: "PyClip", cut_time: "PyTime") -> None:
         """
         Cut all tracks of the Clip.
         """
         ...
 
-    def flush_cache_media(arg1: PyClip, mode: str = 'current') -> bool:
+    def flush_cache_media(arg1: "PyClip", mode: str = 'current') -> bool:
         """
         Flush the Clip's media cache.
         Keyword argument:
@@ -1032,13 +2006,13 @@ class PyClip(PyArchiveEntry):
         """
         ...
 
-    def flush_renders(arg1: PyClip) -> None:
+    def flush_renders(arg1: "PyClip") -> None:
         """
         Flush the Clip's Timeline FX renders.
         """
         ...
 
-    def get_colour_space(arg1: PyClip, time: PyTime = None) -> str:
+    def get_colour_space(arg1: "PyClip", time: "PyTime" = None) -> str:
         """
         Return the colour space at the requested time. Use current_time when no time is supplied.
         """
@@ -1056,7 +2030,7 @@ class PyClip(PyArchiveEntry):
         """
         ...
 
-    def is_rendered(arg1: PyClip, top_only: bool = False, render_quality: str = 'Full Resolution') -> bool:
+    def is_rendered(arg1: "PyClip", top_only: bool = False, render_quality: str = 'Full Resolution') -> bool:
         """
         Return if a Clip is rendered.
         The following attributes can be defined: top_only, render_quality.
@@ -1069,13 +2043,13 @@ class PyClip(PyArchiveEntry):
         """
         ...
 
-    def open_container(arg1: PyClip) -> bool:
+    def open_container(arg1: "PyClip") -> bool:
         """
         Open the container timeline if the Clip is inside a container.
         """
         ...
 
-    def reformat(arg1: PyClip, width: int = 0, height: int = 0, ratio: float = 0.0, bit_depth: int = 0, scan_mode: str = '', frame_rate: str = '', resize_mode: str = 'Letterbox') -> None:
+    def reformat(arg1: "PyClip", width: int = 0, height: int = 0, ratio: float = 0.0, bit_depth: int = 0, scan_mode: str = '', frame_rate: str = '', resize_mode: str = 'Letterbox') -> None:
         """
         Reformat the Clip to the specified format.
         Keywords arguments:
@@ -1089,14 +2063,14 @@ class PyClip(PyArchiveEntry):
         """
         ...
 
-    def render(arg1: PyClip, render_mode: str = 'All', render_option: str = 'Foreground', render_quality: str = 'Full Resolution', effect_type: str = '', effect_caching_mode: str = 'Current', include_handles: bool = False) -> bool:
+    def render(arg1: "PyClip", render_mode: str = 'All', render_option: str = 'Foreground', render_quality: str = 'Full Resolution', effect_type: str = '', effect_caching_mode: str = 'Current', include_handles: bool = False) -> bool:
         """
         Trigger a render of the Clip
         The following attributes can be defined: render_mode, render_option, render_quality, effect_type, effect_caching_mode and include_handles.
         """
         ...
 
-    def save(arg1: PyClip) -> bool:
+    def save(arg1: "PyClip") -> bool:
         """
         Save the Clip to the defined save destination.
         """
@@ -1116,13 +2090,13 @@ class PyClipNode(PyNode):
     version_uid: str = ...
     version_uids: list[str] = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+    def cache_range(arg1: "PyNode", start: Any = None, end: Any = None) -> int:
         """
         Cache the Node result.
         Keyword arguments:
@@ -1131,43 +2105,43 @@ class PyClipNode(PyNode):
         """
         ...
 
-    def clear_schematic_colour(arg1: PyNode) -> None:
+    def clear_schematic_colour(arg1: "PyNode") -> None:
         """
         Clear the schematic colour of the Node.
         """
         ...
 
-    def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
+    def delete(arg1: "PyFlameObject", confirm: bool = True) -> bool:
         """
         Delete the node.
         """
         ...
 
-    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+    def duplicate(arg1: "PyNode", keep_node_connections: bool = False) -> Any:
         """
         Duplicate the node.
         """
         ...
 
-    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def load_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def save_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+    def set_context(arg1: "PyNode", index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
         """
         ...
 
-    def set_version_uid(arg1: PyClipNode, version_uid: str) -> bool:
+    def set_version_uid(arg1: "PyClipNode", version_uid: str) -> bool:
         """
         Set the clip node's current version unique ID.
         Keywords argument:
@@ -1186,13 +2160,13 @@ class PyClrMgmtNode(PyNode):
     parent: "PyFlameObject" = ...
     sockets: dict[str, Any] = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+    def cache_range(arg1: "PyNode", start: Any = None, end: Any = None) -> int:
         """
         Cache the Node result.
         Keyword arguments:
@@ -1201,61 +2175,61 @@ class PyClrMgmtNode(PyNode):
         """
         ...
 
-    def clear_schematic_colour(arg1: PyNode) -> None:
+    def clear_schematic_colour(arg1: "PyNode") -> None:
         """
         Clear the schematic colour of the Node.
         """
         ...
 
-    def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
+    def delete(arg1: "PyFlameObject", confirm: bool = True) -> bool:
         """
         Delete the node.
         """
         ...
 
-    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+    def duplicate(arg1: "PyNode", keep_node_connections: bool = False) -> Any:
         """
         Duplicate the node.
         """
         ...
 
-    def get_context_variables(arg1: PyClrMgmtNode) -> dict:
+    def get_context_variables(arg1: "PyClrMgmtNode") -> dict:
         """
         Get the context variables in a dictionary.
         """
         ...
 
-    def import_transform(arg1: PyClrMgmtNode, file_path: str) -> None:
+    def import_transform(arg1: "PyClrMgmtNode", file_path: str) -> None:
         """
         Import a transform from a file.
         """
         ...
 
-    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def load_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def reset_context_variables(arg1: PyClrMgmtNode) -> None:
+    def reset_context_variables(arg1: "PyClrMgmtNode") -> None:
         """
         Reset the context variables to their initial state from the ocio config.
         """
         ...
 
-    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def save_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+    def set_context(arg1: "PyNode", index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
         """
         ...
 
-    def set_context_variable(arg1: PyClrMgmtNode, name: str, value: str) -> None:
+    def set_context_variable(arg1: "PyClrMgmtNode", name: str, value: str) -> None:
         """
         Set the value for the specified context variable.
         """
@@ -1270,13 +2244,13 @@ class PyCoCameraAnalysis(PyCoNode):
     parent: "PyFlameObject" = ...
     type: str = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def add_reference(arg1: PyCoNode, frame: Any) -> bool:
+    def add_reference(arg1: "PyCoNode", frame: Any) -> bool:
         """
         Add a Motion Warp map's reference frame at specified index.
         Keyword argument
@@ -1284,13 +2258,13 @@ class PyCoCameraAnalysis(PyCoNode):
         """
         ...
 
-    def analyseRange(arg1: PyCoCameraAnalysis, arg2: Any, start: Any) -> bool:
+    def analyseRange(arg1: "PyCoCameraAnalysis", arg2: Any, start: Any) -> bool:
         """
         Run the analysis for the given frame range using the first frame as a reference if none has been already set.
         """
         ...
 
-    def assign_media(arg1: PyCoNode, media_name: Any) -> bool:
+    def assign_media(arg1: "PyCoNode", media_name: Any) -> bool:
         """
         Assign a media layer to the node.
         Keyword argument
@@ -1298,7 +2272,7 @@ class PyCoCameraAnalysis(PyCoNode):
         """
         ...
 
-    def cache_range(arg1: PyCoNode, arg2: Any, start: Any) -> bool:
+    def cache_range(arg1: "PyCoNode", arg2: Any, start: Any) -> bool:
         """
         Cache the selected Map Analysis over the specified range.
         Keyword arguments
@@ -1307,7 +2281,7 @@ class PyCoCameraAnalysis(PyCoNode):
         """
         ...
 
-    def children(arg1: PyCoNode, link_type: str = 'Default') -> list:
+    def children(arg1: "PyCoNode", link_type: str = 'Default') -> list:
         """
         Return a list of PyCoNode objects that are the children of the action node.
         Keyword argument:
@@ -1315,7 +2289,7 @@ class PyCoCameraAnalysis(PyCoNode):
         """
         ...
 
-    def parents(arg1: PyCoNode, link_type: str = 'Default') -> list:
+    def parents(arg1: "PyCoNode", link_type: str = 'Default') -> list:
         """
         Return a list of PyCoNode objects that are the parents of the action node.
         Keyword argument:
@@ -1323,7 +2297,7 @@ class PyCoCameraAnalysis(PyCoNode):
         """
         ...
 
-    def resetAnalysis(arg1: PyCoCameraAnalysis) -> bool:
+    def resetAnalysis(arg1: "PyCoCameraAnalysis") -> bool:
         """
         Reset the current analysis.
         """
@@ -1339,13 +2313,13 @@ class PyCoCompass(PyCoNode):
     parent: "PyFlameObject" = ...
     type: str = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def add_reference(arg1: PyCoNode, frame: Any) -> bool:
+    def add_reference(arg1: "PyCoNode", frame: Any) -> bool:
         """
         Add a Motion Warp map's reference frame at specified index.
         Keyword argument
@@ -1353,7 +2327,7 @@ class PyCoCompass(PyCoNode):
         """
         ...
 
-    def assign_media(arg1: PyCoNode, media_name: Any) -> bool:
+    def assign_media(arg1: "PyCoNode", media_name: Any) -> bool:
         """
         Assign a media layer to the node.
         Keyword argument
@@ -1361,7 +2335,7 @@ class PyCoCompass(PyCoNode):
         """
         ...
 
-    def cache_range(arg1: PyCoNode, arg2: Any, start: Any) -> bool:
+    def cache_range(arg1: "PyCoNode", arg2: Any, start: Any) -> bool:
         """
         Cache the selected Map Analysis over the specified range.
         Keyword arguments
@@ -1370,7 +2344,7 @@ class PyCoCompass(PyCoNode):
         """
         ...
 
-    def children(arg1: PyCoNode, link_type: str = 'Default') -> list:
+    def children(arg1: "PyCoNode", link_type: str = 'Default') -> list:
         """
         Return a list of PyCoNode objects that are the children of the action node.
         Keyword argument:
@@ -1378,7 +2352,7 @@ class PyCoCompass(PyCoNode):
         """
         ...
 
-    def parents(arg1: PyCoNode, link_type: str = 'Default') -> list:
+    def parents(arg1: "PyCoNode", link_type: str = 'Default') -> list:
         """
         Return a list of PyCoNode objects that are the parents of the action node.
         Keyword argument:
@@ -1395,13 +2369,13 @@ class PyCoNode(PyFlameObject):
     parent: "PyFlameObject" = ...
     type: str = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def add_reference(arg1: PyCoNode, frame: Any) -> bool:
+    def add_reference(arg1: "PyCoNode", frame: Any) -> bool:
         """
         Add a Motion Warp map's reference frame at specified index.
         Keyword argument
@@ -1409,7 +2383,7 @@ class PyCoNode(PyFlameObject):
         """
         ...
 
-    def assign_media(arg1: PyCoNode, media_name: Any) -> bool:
+    def assign_media(arg1: "PyCoNode", media_name: Any) -> bool:
         """
         Assign a media layer to the node.
         Keyword argument
@@ -1417,7 +2391,7 @@ class PyCoNode(PyFlameObject):
         """
         ...
 
-    def cache_range(arg1: PyCoNode, arg2: Any, start: Any) -> bool:
+    def cache_range(arg1: "PyCoNode", arg2: Any, start: Any) -> bool:
         """
         Cache the selected Map Analysis over the specified range.
         Keyword arguments
@@ -1426,7 +2400,7 @@ class PyCoNode(PyFlameObject):
         """
         ...
 
-    def children(arg1: PyCoNode, link_type: str = 'Default') -> list:
+    def children(arg1: "PyCoNode", link_type: str = 'Default') -> list:
         """
         Return a list of PyCoNode objects that are the children of the action node.
         Keyword argument:
@@ -1434,7 +2408,7 @@ class PyCoNode(PyFlameObject):
         """
         ...
 
-    def parents(arg1: PyCoNode, link_type: str = 'Default') -> list:
+    def parents(arg1: "PyCoNode", link_type: str = 'Default') -> list:
         """
         Return a list of PyCoNode objects that are the parents of the action node.
         Keyword argument:
@@ -1452,55 +2426,55 @@ class PyColourMgtTimelineFX(PyTimelineFX):
     parent: "PyFlameObject" = ...
     type: str = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def flush_maps_cache_media(arg1: PyTimelineFX) -> bool:
+    def flush_maps_cache_media(arg1: "PyTimelineFX") -> bool:
         """
         Flush the Timeline FX Maps and ML cached media.
         """
         ...
 
-    def get_context_variables(arg1: PyColourMgtTimelineFX) -> dict:
+    def get_context_variables(arg1: "PyColourMgtTimelineFX") -> dict:
         """
         Get the context variables in a dictionary.
         """
         ...
 
-    def import_transform(arg1: PyColourMgtTimelineFX, file_path: str) -> None:
+    def import_transform(arg1: "PyColourMgtTimelineFX", file_path: str) -> None:
         """
         Import a transform from a file.
         """
         ...
 
-    def load_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+    def load_setup(arg1: "PyTimelineFX", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def reset_context_variables(arg1: PyColourMgtTimelineFX) -> None:
+    def reset_context_variables(arg1: "PyColourMgtTimelineFX") -> None:
         """
         Reset the context variables to their initial state from the ocio config.
         """
         ...
 
-    def save_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+    def save_setup(arg1: "PyTimelineFX", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context_variable(arg1: PyColourMgtTimelineFX, name: str, value: str) -> None:
+    def set_context_variable(arg1: "PyColourMgtTimelineFX", name: str, value: str) -> None:
         """
         Set the value for the specified context variable.
         """
         ...
 
-    def slide_keyframes(arg1: PyTimelineFX, offset: float) -> None:
+    def slide_keyframes(arg1: "PyTimelineFX", offset: float) -> None:
         """
         Slide the keyframes the PySegment.
         Keywords argument:
@@ -1509,7 +2483,7 @@ class PyColourMgtTimelineFX(PyTimelineFX):
         """
         ...
 
-    def sync_connected_segments(arg1: PyTimelineFX) -> None:
+    def sync_connected_segments(arg1: "PyTimelineFX") -> None:
         """
         Push the Timeline FX to connected segments.
         """
@@ -1527,13 +2501,13 @@ class PyCompassNode(PyNode):
     parent: "PyFlameObject" = ...
     sockets: dict[str, Any] = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+    def cache_range(arg1: "PyNode", start: Any = None, end: Any = None) -> int:
         """
         Cache the Node result.
         Keyword arguments:
@@ -1542,37 +2516,37 @@ class PyCompassNode(PyNode):
         """
         ...
 
-    def clear_schematic_colour(arg1: PyNode) -> None:
+    def clear_schematic_colour(arg1: "PyNode") -> None:
         """
         Clear the schematic colour of the Node.
         """
         ...
 
-    def delete(arg1: PyFlameObject, confirm: bool = True) -> bool:
+    def delete(arg1: "PyFlameObject", confirm: bool = True) -> bool:
         """
         Delete the node.
         """
         ...
 
-    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+    def duplicate(arg1: "PyNode", keep_node_connections: bool = False) -> Any:
         """
         Duplicate the node.
         """
         ...
 
-    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def load_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def save_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+    def set_context(arg1: "PyNode", index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
         """
@@ -1589,13 +2563,13 @@ class PyDesktop(PyArchiveEntry):
     parent: "PyFlameObject" = ...
     reel_groups: list[PyReelGroup] = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
-    def clear(arg1: PyDesktop) -> bool:
+    def clear(arg1: "PyDesktop") -> bool:
         """
         Clear the Desktop.
         """
@@ -1645,7 +2619,7 @@ class PyDesktop(PyArchiveEntry):
         """
         ...
 
-    def save(arg1: PyDesktop) -> bool:
+    def save(arg1: "PyDesktop") -> bool:
         """
         Save the Desktop to the location defined by the *destination* attribute.
         """
@@ -1744,10 +2718,10 @@ class PyFlameObject:
     attributes: list[PyAttribute] = ...
     parent: "PyFlameObject" = ...
 
-    def __getattr__(arg1: PyFlameObject, arg2: str) -> Any:
+    def __getattr__(arg1: "PyFlameObject", arg2: str) -> Any:
         ...
 
-    def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
+    def __setattr__(arg1: "PyFlameObject", arg2: str, arg3: Any) -> None:
         ...
 
 
@@ -1773,7 +2747,7 @@ class PyFolder(PyArchiveEntry):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def clear(arg1: PyFolder, confirm: bool = True) -> bool:
+    def clear(arg1: "PyFolder", confirm: bool = True) -> bool:
         """
         Clear the contents of the Folder object.
         """
@@ -1864,7 +2838,7 @@ class PyGMaskTracerNode(PyActionFamilyNode):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+    def cache_range(arg1: "PyNode", start: Any = None, end: Any = None) -> int:
         """
         Cache the Node result.
         Keyword arguments:
@@ -1879,7 +2853,7 @@ class PyGMaskTracerNode(PyActionFamilyNode):
         """
         ...
 
-    def clear_schematic_colour(arg1: PyNode) -> None:
+    def clear_schematic_colour(arg1: "PyNode") -> None:
         """
         Clear the schematic colour of the Node.
         """
@@ -1924,7 +2898,7 @@ class PyGMaskTracerNode(PyActionFamilyNode):
         """
         ...
 
-    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+    def duplicate(arg1: "PyNode", keep_node_connections: bool = False) -> Any:
         """
         Duplicate the node.
         """
@@ -1987,7 +2961,7 @@ class PyGMaskTracerNode(PyActionFamilyNode):
         """
         ...
 
-    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def load_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
@@ -2016,13 +2990,13 @@ class PyGMaskTracerNode(PyActionFamilyNode):
         """
         ...
 
-    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def save_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+    def set_context(arg1: "PyNode", index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
         """
@@ -2050,13 +3024,13 @@ class PyHDRNode(PyNode):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def analyze(arg1: PyHDRNode, analyze_mode: str = 'Current Shot') -> None:
+    def analyze(arg1: "PyHDRNode", analyze_mode: str = 'Current Shot') -> None:
         """
         Perform HDR analysis.
         """
         ...
 
-    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+    def cache_range(arg1: "PyNode", start: Any = None, end: Any = None) -> int:
         """
         Cache the Node result.
         Keyword arguments:
@@ -2065,7 +3039,7 @@ class PyHDRNode(PyNode):
         """
         ...
 
-    def clear_schematic_colour(arg1: PyNode) -> None:
+    def clear_schematic_colour(arg1: "PyNode") -> None:
         """
         Clear the schematic colour of the Node.
         """
@@ -2077,73 +3051,73 @@ class PyHDRNode(PyNode):
         """
         ...
 
-    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+    def duplicate(arg1: "PyNode", keep_node_connections: bool = False) -> Any:
         """
         Duplicate the node.
         """
         ...
 
-    def export_DolbyVision_xml(arg1: PyHDRNode, file_name: str, comment: str = '') -> None:
+    def export_DolbyVision_xml(arg1: "PyHDRNode", file_name: str, comment: str = '') -> None:
         """
         Export the current HDR to a Dolby Vision XML file.
         """
         ...
 
-    def has_trim(arg1: PyHDRNode, target_display_id: int) -> bool:
+    def has_trim(arg1: "PyHDRNode", target_display_id: int) -> bool:
         """
         Returns True if the given Target Display ID has trims.
         """
         ...
 
-    def import_DolbyVision_xml(arg1: PyHDRNode, file_name: str, mode: str = 'Include Frame Based Transitions Trims', shot_idx: int = 0) -> None:
+    def import_DolbyVision_xml(arg1: "PyHDRNode", file_name: str, mode: str = 'Include Frame Based Transitions Trims', shot_idx: int = 0) -> None:
         """
         Import the current HDR from a Dolby Vision XML file.
         """
         ...
 
-    def interpolate_trims(arg1: PyHDRNode) -> None:
+    def interpolate_trims(arg1: "PyHDRNode") -> None:
         """
         Interpolate the current HDR trims.
         """
         ...
 
-    def keep_analysis(arg1: PyHDRNode) -> None:
+    def keep_analysis(arg1: "PyHDRNode") -> None:
         """
         Remove the dirty flag from the HDR analysis.
         """
         ...
 
-    def l2_from_l8(arg1: PyHDRNode) -> Any:
+    def l2_from_l8(arg1: "PyHDRNode") -> Any:
         """
         Dictionary containing the L2 values based on L8 values. Not valid in Dolby Vision 2.9.
         """
         ...
 
-    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def load_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def reset_analysis(arg1: PyHDRNode) -> None:
+    def reset_analysis(arg1: "PyHDRNode") -> None:
         """
         Reset the current HDR analysis.
         """
         ...
 
-    def reset_trims(arg1: PyHDRNode) -> None:
+    def reset_trims(arg1: "PyHDRNode") -> None:
         """
         Reset the current HDR trims.
         """
         ...
 
-    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def save_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+    def set_context(arg1: "PyNode", index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
         """
@@ -2170,79 +3144,79 @@ class PyHDRTimelineFX(PyTimelineFX):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def analyze(arg1: PyHDRTimelineFX, analyze_mode: str = 'Current Shot') -> None:
+    def analyze(arg1: "PyHDRTimelineFX", analyze_mode: str = 'Current Shot') -> None:
         """
         Perform HDR analysis.
         """
         ...
 
-    def export_DolbyVision_xml(arg1: PyHDRTimelineFX, file_name: str, shot_only: bool = False, comment: str = '') -> None:
+    def export_DolbyVision_xml(arg1: "PyHDRTimelineFX", file_name: str, shot_only: bool = False, comment: str = '') -> None:
         """
         Export the current HDR to a Dolby Vision XML file.
         """
         ...
 
-    def flush_maps_cache_media(arg1: PyTimelineFX) -> bool:
+    def flush_maps_cache_media(arg1: "PyTimelineFX") -> bool:
         """
         Flush the Timeline FX Maps and ML cached media.
         """
         ...
 
-    def has_trim(arg1: PyHDRTimelineFX, target_display_id: int) -> bool:
+    def has_trim(arg1: "PyHDRTimelineFX", target_display_id: int) -> bool:
         """
         Returns True if the given Target Display ID has trims.
         """
         ...
 
-    def import_DolbyVision_xml(arg1: PyHDRTimelineFX, file_name: str, mode: str = 'Include Frame Based Transitions Trims', shot_idx: int = 0) -> None:
+    def import_DolbyVision_xml(arg1: "PyHDRTimelineFX", file_name: str, mode: str = 'Include Frame Based Transitions Trims', shot_idx: int = 0) -> None:
         """
         Import the current HDR from a Dolby Vision XML file.
         """
         ...
 
-    def interpolate_trims(arg1: PyHDRTimelineFX, arg2: str) -> None:
+    def interpolate_trims(arg1: "PyHDRTimelineFX", arg2: str) -> None:
         """
         Interpolate the current HDR trims.
         """
         ...
 
-    def keep_analysis(arg1: PyHDRTimelineFX) -> None:
+    def keep_analysis(arg1: "PyHDRTimelineFX") -> None:
         """
         Remove the dirty flag from the HDR analysis.
         """
         ...
 
-    def l2_from_l8(arg1: PyHDRTimelineFX) -> Any:
+    def l2_from_l8(arg1: "PyHDRTimelineFX") -> Any:
         """
         Dictionary containing the L2 values based on L8 values. Not valid in Dolby Vision 2.9.
         """
         ...
 
-    def load_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+    def load_setup(arg1: "PyTimelineFX", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def reset_analysis(arg1: PyHDRTimelineFX) -> None:
+    def reset_analysis(arg1: "PyHDRTimelineFX") -> None:
         """
         Reset the current HDR analysis.
         """
         ...
 
-    def reset_trims(arg1: PyHDRTimelineFX) -> None:
+    def reset_trims(arg1: "PyHDRTimelineFX") -> None:
         """
         Reset the current HDR trims.
         """
         ...
 
-    def save_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+    def save_setup(arg1: "PyTimelineFX", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def slide_keyframes(arg1: PyTimelineFX, offset: float) -> None:
+    def slide_keyframes(arg1: "PyTimelineFX", offset: float) -> None:
         """
         Slide the keyframes the PySegment.
         Keywords argument:
@@ -2251,7 +3225,7 @@ class PyHDRTimelineFX(PyTimelineFX):
         """
         ...
 
-    def sync_connected_segments(arg1: PyTimelineFX) -> None:
+    def sync_connected_segments(arg1: "PyTimelineFX") -> None:
         """
         Push the Timeline FX to connected segments.
         """
@@ -2288,7 +3262,7 @@ class PyImageNode(PyActionFamilyNode):
         """
         ...
 
-    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+    def cache_range(arg1: "PyNode", start: Any = None, end: Any = None) -> int:
         """
         Cache the Node result.
         Keyword arguments:
@@ -2303,7 +3277,7 @@ class PyImageNode(PyActionFamilyNode):
         """
         ...
 
-    def clear_schematic_colour(arg1: PyNode) -> None:
+    def clear_schematic_colour(arg1: "PyNode") -> None:
         """
         Clear the schematic colour of the Node.
         """
@@ -2340,7 +3314,7 @@ class PyImageNode(PyActionFamilyNode):
         """
         ...
 
-    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+    def duplicate(arg1: "PyNode", keep_node_connections: bool = False) -> Any:
         """
         Duplicate the node.
         """
@@ -2361,7 +3335,7 @@ class PyImageNode(PyActionFamilyNode):
         """
         ...
 
-    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def load_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
@@ -2373,13 +3347,13 @@ class PyImageNode(PyActionFamilyNode):
         """
         ...
 
-    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def save_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+    def set_context(arg1: "PyNode", index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
         """
@@ -2402,7 +3376,7 @@ class PyLensDistortionNode(PyNode):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+    def cache_range(arg1: "PyNode", start: Any = None, end: Any = None) -> int:
         """
         Cache the Node result.
         Keyword arguments:
@@ -2411,13 +3385,13 @@ class PyLensDistortionNode(PyNode):
         """
         ...
 
-    def calculate(arg1: PyLensDistortionNode) -> None:
+    def calculate(arg1: "PyLensDistortionNode") -> None:
         """
         Calculate the amount of distorsion based on the position of vertices.
         """
         ...
 
-    def clear_schematic_colour(arg1: PyNode) -> None:
+    def clear_schematic_colour(arg1: "PyNode") -> None:
         """
         Clear the schematic colour of the Node.
         """
@@ -2429,31 +3403,31 @@ class PyLensDistortionNode(PyNode):
         """
         ...
 
-    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+    def duplicate(arg1: "PyNode", keep_node_connections: bool = False) -> Any:
         """
         Duplicate the node.
         """
         ...
 
-    def import_lens_distortion(arg1: PyLensDistortionNode, filename: str) -> None:
+    def import_lens_distortion(arg1: "PyLensDistortionNode", filename: str) -> None:
         """
         Import the Lens Distortion file.
         """
         ...
 
-    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def load_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def save_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+    def set_context(arg1: "PyNode", index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
         """
@@ -2483,13 +3457,13 @@ class PyLibrary(PyArchiveEntry):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def acquire_exclusive_access(arg1: PyLibrary) -> bool:
+    def acquire_exclusive_access(arg1: "PyLibrary") -> bool:
         """
         Acquire exclusive access to the Shared Library. Shared Libraries are created locked. Only use with Shared Libraries.
         """
         ...
 
-    def clear(arg1: PyLibrary, confirm: bool = True) -> bool:
+    def clear(arg1: "PyLibrary", confirm: bool = True) -> bool:
         """
         Clear the Library's contents.
         """
@@ -2501,7 +3475,7 @@ class PyLibrary(PyArchiveEntry):
         """
         ...
 
-    def close(arg1: PyLibrary) -> bool:
+    def close(arg1: "PyLibrary") -> bool:
         """
         Close a Library to release it from the application memory.
         """
@@ -2561,13 +3535,13 @@ class PyLibrary(PyArchiveEntry):
         """
         ...
 
-    def open(arg1: PyLibrary) -> bool:
+    def open(arg1: "PyLibrary") -> bool:
         """
         Open a Library and load it in the application memory. Until a Library is open, it cannot be accessed. Libraries are created open.
         """
         ...
 
-    def release_exclusive_access(arg1: PyLibrary) -> bool:
+    def release_exclusive_access(arg1: "PyLibrary") -> bool:
         """
         Release exclusive access to the Shared Library. Only used for Shared Libraries. Only use with Shared Libraries.
         """
@@ -2587,7 +3561,7 @@ class PyMarker(PyFlameObject):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def sync_connected_segments(arg1: PyMarker) -> None:
+    def sync_connected_segments(arg1: "PyMarker") -> None:
         """
         Push the Segment Marker to connected segments.
         """
@@ -2686,13 +3660,13 @@ class PyMediaHubFilesTab(PyMediaHubTab):
     """
     options: "PyMediaHubFilesTabOptions" = ...
 
-    def get_path(arg1: PyMediaHubTab) -> str:
+    def get_path(arg1: "PyMediaHubTab") -> str:
         """
         Return the MediaHub tab current path.
         """
         ...
 
-    def set_path(arg1: PyMediaHubTab, arg2: str, allow_partial_success: bool = False) -> bool:
+    def set_path(arg1: "PyMediaHubTab", arg2: str, allow_partial_success: bool = False) -> bool:
         """
         Set the MediaHub tab current path. If allow_partial_success is True, the path will be set to the last valid folder in the path.
         """
@@ -2703,23 +3677,23 @@ class PyMediaHubFilesTabOptions:
     """
     This class represents the MediaHub Files tab options.
     """
-    bit_depth: str | None = ...
+    bit_depth: int = ...
     cache_and_proxies_all_versions: bool = ...
-    cache_mode: str = ...
-    frame_ratio: float | None = ...
-    height: int | None = ...
+    cache_mode: bool = ...
+    frame_ratio: float = ...
+    height: int = ...
     multi_channel_mode: str = ...
-    pixel_ratio: float | None = ...
-    proxies_mode: str = ...
+    pixel_ratio: float = ...
+    proxies_mode: bool = ...
     resize_filter: str = ...
     resize_mode: str = ...
     resolution: str = ...
-    scaling_presets_value: float | None = ...
+    scaling_presets_value: float = ...
     scan_mode: str = ...
-    sequence_mode: str = ...
-    width: int | None = ...
+    sequence_mode: bool = ...
+    width: int = ...
 
-    def set_tagged_colour_space(arg1: PyMediaHubFilesTabOptions, colour_space: str) -> None:
+    def set_tagged_colour_space(arg1: "PyMediaHubFilesTabOptions", colour_space: str) -> None:
         """
         Set the tagged colour space to use upon import.
         """
@@ -2811,13 +3785,13 @@ class PyMediaHubTab:
     This class represents a MediaHub tab.
     """
 
-    def get_path(arg1: PyMediaHubTab) -> str:
+    def get_path(arg1: "PyMediaHubTab") -> str:
         """
         Return the MediaHub tab current path.
         """
         ...
 
-    def set_path(arg1: PyMediaHubTab, arg2: str, allow_partial_success: bool = False) -> bool:
+    def set_path(arg1: "PyMediaHubTab", arg2: str, allow_partial_success: bool = False) -> bool:
         """
         Set the MediaHub tab current path. If allow_partial_success is True, the path will be set to the last valid folder in the path.
         """
@@ -2860,13 +3834,13 @@ class PyMessages:
     Module handling message bar in application UI.
     """
 
-    def clear_console(arg1: PyMessages) -> None:
+    def clear_console(arg1: "PyMessages") -> None:
         """
         Remove currently displayed message in the message bar.
         """
         ...
 
-    def show_in_console(arg1: PyMessages, message: str, type: str = 'info', duration: int = -1) -> None:
+    def show_in_console(arg1: "PyMessages", message: str, type: str = 'info', duration: int = -1) -> None:
         """
         Display an informative message in application message bar.
         message -- Message string to display.
@@ -2875,7 +3849,7 @@ class PyMessages:
         """
         ...
 
-    def show_in_dialog(arg1: PyMessages, title: str, message: str, type: str, buttons: list, cancel_button: str = '') -> str:
+    def show_in_dialog(arg1: "PyMessages", title: str, message: str, type: str, buttons: list, cancel_button: str = '') -> str:
         """
         Display a custom dialog with a selection of options.
         Keywords argument:
@@ -2904,7 +3878,7 @@ class PyMorphNode(PyNode):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+    def cache_range(arg1: "PyNode", start: Any = None, end: Any = None) -> int:
         """
         Cache the Node result.
         Keyword arguments:
@@ -2913,7 +3887,7 @@ class PyMorphNode(PyNode):
         """
         ...
 
-    def clear_schematic_colour(arg1: PyNode) -> None:
+    def clear_schematic_colour(arg1: "PyNode") -> None:
         """
         Clear the schematic colour of the Node.
         """
@@ -2925,31 +3899,31 @@ class PyMorphNode(PyNode):
         """
         ...
 
-    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+    def duplicate(arg1: "PyNode", keep_node_connections: bool = False) -> Any:
         """
         Duplicate the node.
         """
         ...
 
-    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def load_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def save_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+    def set_context(arg1: "PyNode", index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
         """
         ...
 
-    def set_mix_to_range(arg1: PyMorphNode) -> None:
+    def set_mix_to_range(arg1: "PyMorphNode") -> None:
         """
         Move the first and last keyframes of the mix curve to the range's first and last frame.
         """
@@ -2972,7 +3946,7 @@ class PyNode(PyFlameObject):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def cache_range(arg1: PyNode, start: Any = None, end: Any = None) -> int:
+    def cache_range(arg1: "PyNode", start: Any = None, end: Any = None) -> int:
         """
         Cache the Node result.
         Keyword arguments:
@@ -2981,7 +3955,7 @@ class PyNode(PyFlameObject):
         """
         ...
 
-    def clear_schematic_colour(arg1: PyNode) -> None:
+    def clear_schematic_colour(arg1: "PyNode") -> None:
         """
         Clear the schematic colour of the Node.
         """
@@ -2993,25 +3967,25 @@ class PyNode(PyFlameObject):
         """
         ...
 
-    def duplicate(arg1: PyNode, keep_node_connections: bool = False) -> Any:
+    def duplicate(arg1: "PyNode", keep_node_connections: bool = False) -> Any:
         """
         Duplicate the node.
         """
         ...
 
-    def load_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def load_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def save_node_setup(arg1: PyNode, file_name: str) -> bool:
+    def save_node_setup(arg1: "PyNode", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def set_context(arg1: PyNode, index: int, socket_name: str = 'Default') -> bool:
+    def set_context(arg1: "PyNode", index: int, socket_name: str = 'Default') -> bool:
         """
         Set a Context view on a Node socket. An index and a socket name must be defined as arguments.
         """
@@ -3043,7 +4017,7 @@ class PyOFXNode(PyNode):
         """
         ...
 
-    def change_plugin(arg1: PyOFXNode, plugin_name: str) -> bool:
+    def change_plugin(arg1: "PyOFXNode", plugin_name: str) -> bool:
         """
         Change the active plugin for the openFX node
         """
@@ -3102,7 +4076,7 @@ class PyPaintNode(PyNode):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def add_source(arg1: PyPaintNode) -> Any:
+    def add_source(arg1: "PyPaintNode") -> Any:
         """
         Add a Source layer to a Paint node.
         """
@@ -3195,7 +4169,7 @@ class PyProject(PyArchiveEntry):
         """
         ...
 
-    def export_ocio_config(arg1: PyProject, config_name: str, destination_folder: str = '', overwrite_existing: bool = False, export_as_locked: bool = False, generate_ocioz: bool = False) -> bool:
+    def export_ocio_config(arg1: "PyProject", config_name: str, destination_folder: str = '', overwrite_existing: bool = False, export_as_locked: bool = False, generate_ocioz: bool = False) -> bool:
         """
         Export the OCIO config file.
         Keyword arguments:
@@ -3207,7 +4181,7 @@ class PyProject(PyArchiveEntry):
         """
         ...
 
-    def get_context_variables(arg1: PyProject) -> dict:
+    def get_context_variables(arg1: "PyProject") -> dict:
         """
         Get the context variables in a dictionary.
         """
@@ -3225,13 +4199,13 @@ class PyProject(PyArchiveEntry):
         """
         ...
 
-    def refresh_shared_libraries(arg1: PyProject) -> bool:
+    def refresh_shared_libraries(arg1: "PyProject") -> bool:
         """
         Refresh the Shared Libraries list in the Media Panel.
         """
         ...
 
-    def reload_ocio_config(arg1: PyProject, reset_colour_policy: bool = False) -> bool:
+    def reload_ocio_config(arg1: "PyProject", reset_colour_policy: bool = False) -> bool:
         """
         Reload the OCIO config file.
         Keyword argument:
@@ -3239,13 +4213,13 @@ class PyProject(PyArchiveEntry):
         """
         ...
 
-    def reset_context_variables(arg1: PyProject) -> None:
+    def reset_context_variables(arg1: "PyProject") -> None:
         """
         Reset the context variables to their initial state from the ocio config.
         """
         ...
 
-    def set_context_variable(arg1: PyProject, name: str, value: str) -> None:
+    def set_context_variable(arg1: "PyProject", name: str, value: str) -> None:
         """
         Set the value for the specified context variable.
         """
@@ -3276,7 +4250,7 @@ class PyReel(PyArchiveEntry):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def clear(arg1: PyReel, confirm: bool = True) -> bool:
+    def clear(arg1: "PyReel", confirm: bool = True) -> bool:
         """
         Clear the Reel content.
         """
@@ -3324,7 +4298,7 @@ class PyReel(PyArchiveEntry):
         """
         ...
 
-    def save(arg1: PyReel) -> bool:
+    def save(arg1: "PyReel") -> bool:
         """
         Save the Reel to the defined save destination.
         """
@@ -3346,7 +4320,7 @@ class PyReelGroup(PyArchiveEntry):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def clear(arg1: PyReelGroup, confirm: bool = True) -> bool:
+    def clear(arg1: "PyReelGroup", confirm: bool = True) -> bool:
         """
         Clear the Reel Group content.
         """
@@ -3382,7 +4356,7 @@ class PyReelGroup(PyArchiveEntry):
         """
         ...
 
-    def save(arg1: PyReelGroup) -> bool:
+    def save(arg1: "PyReelGroup") -> bool:
         """
         Save the Reel Group to the defined save destination.
         """
@@ -3445,7 +4419,7 @@ class PyRenderNode(PyNode):
         """
         ...
 
-    def set_channel_name(arg1: PyRenderNode, channel: Any, name: Any) -> None:
+    def set_channel_name(arg1: "PyRenderNode", channel: Any, name: Any) -> None:
         """
         Rename a channel, using its index or front channel name as the index key.
         Keyword arguments:
@@ -3495,31 +4469,31 @@ class PySearch:
     """
     use_weight: bool = ...
 
-    def activate_search_result(arg1: PySearch, name: str, type: str, tab: str = 'Tools') -> None:
+    def activate_search_result(arg1: "PySearch", name: str, type: str, tab: str = 'Tools') -> None:
         """
         Activate a search result.
         """
         ...
 
-    def search_results(arg1: PySearch, search_str: str = '*', tab: str = 'Tools') -> list:
+    def search_results(arg1: "PySearch", search_str: str = '*', tab: str = 'Tools') -> list:
         """
         Search results that match a string.
         """
         ...
 
-    def set_tool_favorite(arg1: PySearch, arg2: str, name: str, type: bool) -> None:
+    def set_tool_favorite(arg1: "PySearch", arg2: str, name: str, type: bool) -> None:
         """
         Return the favorite status of a tool.
         """
         ...
 
-    def set_tool_hidden(arg1: PySearch, arg2: str, name: str, type: bool) -> None:
+    def set_tool_hidden(arg1: "PySearch", arg2: str, name: str, type: bool) -> None:
         """
         Return the hidden status of a tool.
         """
         ...
 
-    def set_tool_weight(arg1: PySearch, arg2: str, name: str, type: int) -> None:
+    def set_tool_weight(arg1: "PySearch", arg2: str, name: str, type: int) -> None:
         """
         Return the tool weight.
         """
@@ -3581,7 +4555,7 @@ class PySegment(PyFlameObject):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def change_start_frame(arg1: PySegment, start_frame: int, use_segment_connections: bool = True) -> None:
+    def change_start_frame(arg1: "PySegment", start_frame: int, use_segment_connections: bool = True) -> None:
         """
         Modify the start frame of the segment.
         Keywords argument:
@@ -3590,7 +4564,7 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def clear_colour(arg1: PySegment) -> None:
+    def clear_colour(arg1: "PySegment") -> None:
         """
         Clear the colour of the Segment.
         """
@@ -3611,7 +4585,7 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def create_connection(arg1: PySegment) -> None:
+    def create_connection(arg1: "PySegment") -> None:
         """
         Create a connected segment connection.
         """
@@ -3630,7 +4604,7 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def create_unlinked_segment(arg1: PySegment, source_name: str = '', tape_name: str = '', start_time: Any = 0, source_duration: Any = 0, head: Any = 0, file_path: str = '', source_audio_track: int = 1, width: int = 0, height: int = 0, ratio: float = 0.0, bit_depth: int = 0, scan_mode: str = 'Same As Sequence', frame_rate: str = 'Same As Sequence') -> None:
+    def create_unlinked_segment(arg1: "PySegment", source_name: str = '', tape_name: str = '', start_time: Any = 0, source_duration: Any = 0, head: Any = 0, file_path: str = '', source_audio_track: int = 1, width: int = 0, height: int = 0, ratio: float = 0.0, bit_depth: int = 0, scan_mode: str = 'Same As Sequence', frame_rate: str = 'Same As Sequence') -> None:
         """
         Replace the gap with an unlinked source media segment.
         Keywords argument:
@@ -3650,19 +4624,19 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def duplicate_source(arg1: PySegment) -> None:
+    def duplicate_source(arg1: "PySegment") -> None:
         """
         Insure that the segment's source is not shared anymore.
         """
         ...
 
-    def get_colour_space(arg1: PySegment, time: PyTime = None) -> str:
+    def get_colour_space(arg1: "PySegment", time: "PyTime" = None) -> str:
         """
         Return the colour space at the requested time. Use record_in when no time is supplied.
         """
         ...
 
-    def match(arg1: PySegment, destination: PyArchiveEntry, preserve_handle: bool = False, use_sequence_info: bool = True, include_nested_content: bool = False, include_timeline_fx: bool = False) -> Any:
+    def match(arg1: "PySegment", destination: PyArchiveEntry, preserve_handle: bool = False, use_sequence_info: bool = True, include_nested_content: bool = False, include_timeline_fx: bool = False) -> Any:
         """
         Match out the media of the PySegment to the destination.
         Returns a PyClip or a list of PyClip (with the included_nested_content option).
@@ -3675,13 +4649,13 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def remove_connection(arg1: PySegment) -> None:
+    def remove_connection(arg1: "PySegment") -> None:
         """
         Remove the connected segment connection.
         """
         ...
 
-    def set_gap_bars(arg1: PySegment, type: str = 'smpte', full_luminance: bool = False, softness: float = 0.0) -> Any:
+    def set_gap_bars(arg1: "PySegment", type: str = 'smpte', full_luminance: bool = False, softness: float = 0.0) -> Any:
         """
         Create colour bars segment for the duration of the gap.
         Returns a new PySegment on success.
@@ -3692,13 +4666,13 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def set_gap_colour(arg1: PySegment, r: float = 0.0, g: float = 0.0, b: float = 0.0) -> None:
+    def set_gap_colour(arg1: "PySegment", r: float = 0.0, g: float = 0.0, b: float = 0.0) -> None:
         """
         Create a colour source segment for the duration of the gap, or set the colour of an existing colour source.
         """
         ...
 
-    def set_matte_channel(arg1: PySegment, channel_name: str = '', channel_index: int = -1, scope: str = 'Follow Preferences', matte_mode: str = 'Custom Matte') -> bool:
+    def set_matte_channel(arg1: "PySegment", channel_name: str = '', channel_index: int = -1, scope: str = 'Follow Preferences', matte_mode: str = 'Custom Matte') -> bool:
         """
         Set the Matte channel of the source specified by channel_index or by channel_name if the matte_mode is set to Custom Matte.
         Keywords argument:
@@ -3709,7 +4683,7 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def set_rgb_channel(arg1: PySegment, channel_name: str = '', channel_index: int = -1, scope: str = 'Follow Preferences') -> bool:
+    def set_rgb_channel(arg1: "PySegment", channel_name: str = '', channel_index: int = -1, scope: str = 'Follow Preferences') -> bool:
         """
         Set the RGB channel of the source specified by channel_index or by channel_name
         Keywords argument:
@@ -3719,7 +4693,7 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def set_version_uid(arg1: PySegment, version_uid: str, scope: str = 'Follow Source Sharing') -> bool:
+    def set_version_uid(arg1: "PySegment", version_uid: str, scope: str = 'Follow Source Sharing') -> bool:
         """
         Set the current version unique ID of the source.
         Keywords argument:
@@ -3734,7 +4708,7 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def slide_keyframes(arg1: PySegment, offset: int, sync: bool = False) -> bool:
+    def slide_keyframes(arg1: "PySegment", offset: int, sync: bool = False) -> bool:
         """
         Slide the keyframes the PySegment.
         Keywords argument:
@@ -3743,7 +4717,7 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def slip(arg1: PySegment, offset: int, sync: bool = False, keyframes_move_mode: str = 'Shift') -> bool:
+    def slip(arg1: "PySegment", offset: int, sync: bool = False, keyframes_move_mode: str = 'Shift') -> bool:
         """
         Slip the media of the PySegment.
         Keywords argument:
@@ -3753,25 +4727,25 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def smart_replace(arg1: PySegment, source_clip: PyClip) -> None:
+    def smart_replace(arg1: "PySegment", source_clip: PyClip) -> None:
         """
         Replace the PySegment by the source_clip segment, including the Timeline FX.
         """
         ...
 
-    def smart_replace_media(arg1: PySegment, source_clip: PyClip) -> None:
+    def smart_replace_media(arg1: "PySegment", source_clip: PyClip) -> None:
         """
         Replace the media of PySegment by the source_clip segment, leaving the PySegment Timeline FX untouched
         """
         ...
 
-    def sync_connected_segments(arg1: PySegment) -> None:
+    def sync_connected_segments(arg1: "PySegment") -> None:
         """
         Sync connected segments with the Timeline FXs of the current segment.
         """
         ...
 
-    def trim_head(arg1: PySegment, offset: int, ripple: bool = False, sync: bool = False, keyframes_move_mode: str = 'Shift') -> bool:
+    def trim_head(arg1: "PySegment", offset: int, ripple: bool = False, sync: bool = False, keyframes_move_mode: str = 'Shift') -> bool:
         """
         Modify the amount of head of the PySegment.
         Keywords argument:
@@ -3782,7 +4756,7 @@ class PySegment(PyFlameObject):
         """
         ...
 
-    def trim_tail(arg1: PySegment, offset: int, ripple: bool = False, sync: bool = False, keyframes_move_mode: str = 'Shift') -> bool:
+    def trim_tail(arg1: "PySegment", offset: int, ripple: bool = False, sync: bool = False, keyframes_move_mode: str = 'Shift') -> bool:
         """
         Modify the amount of tail of the PySegment.
         Keywords argument:
@@ -3878,7 +4852,7 @@ class PySequence(PyClip):
         """
         ...
 
-    def copy_selection_to_media_panel(arg1: PySequence, destination: PyArchiveEntry, duplicate_action: str = 'add') -> Any:
+    def copy_selection_to_media_panel(arg1: "PySequence", destination: PyArchiveEntry, duplicate_action: str = 'add') -> Any:
         """
         Create a new clip by copying the currently selected segments.
         Return the new PyClip.
@@ -3926,13 +4900,13 @@ class PySequence(PyClip):
         """
         ...
 
-    def cut(arg1: PyClip, cut_time: PyTime) -> None:
+    def cut(arg1: PyClip, cut_time: "PyTime") -> None:
         """
         Cut all tracks of the Clip.
         """
         ...
 
-    def extract_selection_to_media_panel(arg1: PySequence, destination: PyArchiveEntry = None, duplicate_action: str = 'add') -> Any:
+    def extract_selection_to_media_panel(arg1: "PySequence", destination: PyArchiveEntry = None, duplicate_action: str = 'add') -> Any:
         """
         Extract the selection from the sequence.
         Return the new PyClip created from the selection when a destination is supplied.
@@ -3956,7 +4930,7 @@ class PySequence(PyClip):
         """
         ...
 
-    def get_colour_space(arg1: PyClip, time: PyTime = None) -> str:
+    def get_colour_space(arg1: PyClip, time: "PyTime" = None) -> str:
         """
         Return the colour space at the requested time. Use current_time when no time is supplied.
         """
@@ -3974,7 +4948,7 @@ class PySequence(PyClip):
         """
         ...
 
-    def import_subtitles_file(arg1: PySequence, file_name: str, file_type: Any = None, align_first_event_to_clip_start: bool = False, convert_from_frame_rate: Any = None) -> Any:
+    def import_subtitles_file(arg1: "PySequence", file_name: str, file_type: Any = None, align_first_event_to_clip_start: bool = False, convert_from_frame_rate: Any = None) -> Any:
         """
         Import a subtitles file into a new Subtitles Track.
         Return the new PySubtitleTrack.
@@ -3986,7 +4960,7 @@ class PySequence(PyClip):
         """
         ...
 
-    def insert(arg1: PySequence, source_clip: PyClip, insert_time: PyTime = None, destination_track: PyTrack = None) -> bool:
+    def insert(arg1: "PySequence", source_clip: PyClip, insert_time: "PyTime" = None, destination_track: "PyTrack" = None) -> bool:
         """
         Creates a new PySequenceGroup.
         The group name must be supplied as argument.
@@ -4000,7 +4974,7 @@ class PySequence(PyClip):
         """
         ...
 
-    def lift_selection_to_media_panel(arg1: PySequence, destination: PyArchiveEntry = None, duplicate_action: str = 'add') -> Any:
+    def lift_selection_to_media_panel(arg1: "PySequence", destination: PyArchiveEntry = None, duplicate_action: str = 'add') -> Any:
         """
         Lift the selection from the sequence.
         Return the new PyClip created from the selection when a destination is supplied.
@@ -4010,7 +4984,7 @@ class PySequence(PyClip):
         """
         ...
 
-    def open(arg1: PySequence) -> bool:
+    def open(arg1: "PySequence") -> bool:
         """
         Open the Sequence.
         """
@@ -4028,7 +5002,7 @@ class PySequence(PyClip):
         """
         ...
 
-    def overwrite(arg1: PySequence, source_clip: PyClip, overwrite_time: PyTime = None, destination_track: PyTrack = None) -> bool:
+    def overwrite(arg1: "PySequence", source_clip: PyClip, overwrite_time: "PyTime" = None, destination_track: "PyTrack" = None) -> bool:
         """
         Creates a new PySequenceGroup.
         The group name must be supplied as argument.
@@ -4077,13 +5051,13 @@ class PySequenceGroup(PyFlameObject):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def add(arg1: PySequenceGroup, segments: Any) -> None:
+    def add(arg1: "PySequenceGroup", segments: Any) -> None:
         """
         Adds a PySegment or list of PySegments to the Group.
         """
         ...
 
-    def remove(arg1: PySequenceGroup, segments: Any) -> None:
+    def remove(arg1: "PySequenceGroup", segments: Any) -> None:
         """
         Remove a PySegment or list of PySegments from the Group.
         """
@@ -4111,13 +5085,13 @@ class PySubtitleTrack(PyTrack):
         """
         ...
 
-    def cut(arg1: PyTrack, cut_time: PyTime, sync: bool = False) -> None:
+    def cut(arg1: "PyTrack", cut_time: "PyTime", sync: bool = False) -> None:
         """
         Cut the Track.
         """
         ...
 
-    def export_as_srt_file(arg1: PySubtitleTrack, file_name: str, character_based_attributes: bool = True, export_colours: bool = False, exclude_colour: str = '', use_original_colours: bool = False, use_original_alignment: bool = False, export_alignments: bool = False, alignment_type: str = 'an', exclude_alignment: str = '', start_timecode: str = 'Same as Clip') -> None:
+    def export_as_srt_file(arg1: "PySubtitleTrack", file_name: str, character_based_attributes: bool = True, export_colours: bool = False, exclude_colour: str = '', use_original_colours: bool = False, use_original_alignment: bool = False, export_alignments: bool = False, alignment_type: str = 'an', exclude_alignment: str = '', start_timecode: str = 'Same as Clip') -> None:
         """
         Export the Subtitles Track as a SubRip (srt) file.Keyword arguments:
         file_name -- The path and name of the file to write.
@@ -4161,24 +5135,24 @@ PyTime(absolute_frame, frame_rate)
     relative_frame: int = ...
     timecode: str = ...
 
-    def __add__(arg1: PyTime, arg2: PyTime) -> Any:
+    def __add__(arg1: "PyTime", arg2: int) -> Any:
         ...
 
     @overload
-    def __add__(arg1: PyTime, arg2: int) -> Any:
+    def __add__(arg1: "PyTime", arg2: int) -> Any:
         ...
 
-    def __eq__(arg1: PyTime, arg2: PyTime) -> bool:
+    def __eq__(arg1: "PyTime", arg2: "PyTime") -> bool:
         ...
 
-    def __iadd__(arg1: Any, arg2: PyTime) -> Any:
+    def __iadd__(arg1: Any, arg2: int) -> Any:
         ...
 
     @overload
     def __iadd__(arg1: Any, arg2: int) -> Any:
         ...
 
-    def __init__(arg1: Any, arg2: str, arg3: str) -> None:
+    def __init__(arg1: Any, arg2: int, arg3: str) -> None:
         ...
 
     @overload
@@ -4189,27 +5163,27 @@ PyTime(absolute_frame, frame_rate)
     def __init__(arg1: Any, arg2: int, arg3: str) -> None:
         ...
 
-    def __isub__(arg1: Any, arg2: PyTime) -> Any:
+    def __isub__(arg1: Any, arg2: int) -> Any:
         ...
 
     @overload
     def __isub__(arg1: Any, arg2: int) -> Any:
         ...
 
-    def __ne__(arg1: PyTime, arg2: PyTime) -> bool:
+    def __ne__(arg1: "PyTime", arg2: "PyTime") -> bool:
         ...
 
-    def __repr__(arg1: PyTime) -> Any:
+    def __repr__(arg1: "PyTime") -> Any:
         ...
 
-    def __str__(arg1: PyTime) -> str:
+    def __str__(arg1: "PyTime") -> str:
         ...
 
-    def __sub__(arg1: PyTime, arg2: PyTime) -> Any:
+    def __sub__(arg1: "PyTime", arg2: int) -> Any:
         ...
 
     @overload
-    def __sub__(arg1: PyTime, arg2: int) -> Any:
+    def __sub__(arg1: "PyTime", arg2: int) -> Any:
         ...
 
 
@@ -4240,25 +5214,25 @@ class PyTimelineFX(PyFlameObject):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def flush_maps_cache_media(arg1: PyTimelineFX) -> bool:
+    def flush_maps_cache_media(arg1: "PyTimelineFX") -> bool:
         """
         Flush the Timeline FX Maps and ML cached media.
         """
         ...
 
-    def load_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+    def load_setup(arg1: "PyTimelineFX", file_name: str) -> bool:
         """
         Load a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def save_setup(arg1: PyTimelineFX, file_name: str) -> bool:
+    def save_setup(arg1: "PyTimelineFX", file_name: str) -> bool:
         """
         Save a Node setup. A path and a file name must be defined as arguments.
         """
         ...
 
-    def slide_keyframes(arg1: PyTimelineFX, offset: float) -> None:
+    def slide_keyframes(arg1: "PyTimelineFX", offset: float) -> None:
         """
         Slide the keyframes the PySegment.
         Keywords argument:
@@ -4267,7 +5241,7 @@ class PyTimelineFX(PyFlameObject):
         """
         ...
 
-    def sync_connected_segments(arg1: PyTimelineFX) -> None:
+    def sync_connected_segments(arg1: "PyTimelineFX") -> None:
         """
         Push the Timeline FX to connected segments.
         """
@@ -4317,25 +5291,25 @@ class PyTimewarpNode(PyNode):
         """
         ...
 
-    def get_duration_timing(arg1: PyTimewarpNode, frame: float) -> float:
+    def get_duration_timing(arg1: "PyTimewarpNode", frame: float) -> float:
         """
         Return the timing value for the current frame while in the duration mode.
         """
         ...
 
-    def get_speed(arg1: PyTimewarpNode, frame: float) -> float:
+    def get_speed(arg1: "PyTimewarpNode", frame: float) -> float:
         """
         Return the speed attribute at the requested frame.
         """
         ...
 
-    def get_speed_timing(arg1: PyTimewarpNode, frame: float) -> float:
+    def get_speed_timing(arg1: "PyTimewarpNode", frame: float) -> float:
         """
         The timing value for the current frame while in the speed mode.
         """
         ...
 
-    def get_timing(arg1: PyTimewarpNode, frame: float) -> float:
+    def get_timing(arg1: "PyTimewarpNode", frame: float) -> float:
         """
         Return the timing value at the requested frame.
         """
@@ -4359,13 +5333,13 @@ class PyTimewarpNode(PyNode):
         """
         ...
 
-    def set_speed(arg1: PyTimewarpNode, frame: float, new_speed: float) -> None:
+    def set_speed(arg1: "PyTimewarpNode", frame: float, new_speed: float) -> None:
         """
         Set the speed at the requested frame.
         """
         ...
 
-    def set_timing(arg1: PyTimewarpNode, frame: float, new_timing: float) -> None:
+    def set_timing(arg1: "PyTimewarpNode", frame: float, new_timing: float) -> None:
         """
         Set the timing at the requested frame.
         """
@@ -4393,25 +5367,25 @@ class PyTimewarpTimelineFX(PyTimelineFX):
         """
         ...
 
-    def get_duration_timing(arg1: PyTimewarpTimelineFX, frame: float) -> float:
+    def get_duration_timing(arg1: "PyTimewarpTimelineFX", frame: float) -> float:
         """
         Return the timing value for the current frame while in the duration mode.
         """
         ...
 
-    def get_speed(arg1: PyTimewarpTimelineFX, frame: float) -> float:
+    def get_speed(arg1: "PyTimewarpTimelineFX", frame: float) -> float:
         """
         Return the speed attribute at the requested frame.
         """
         ...
 
-    def get_speed_timing(arg1: PyTimewarpTimelineFX, frame: float) -> float:
+    def get_speed_timing(arg1: "PyTimewarpTimelineFX", frame: float) -> float:
         """
         The timing value for the current frame while in the speed mode.
         """
         ...
 
-    def get_timing(arg1: PyTimewarpTimelineFX, frame: float) -> float:
+    def get_timing(arg1: "PyTimewarpTimelineFX", frame: float) -> float:
         """
         Return the timing value at the requested frame.
         """
@@ -4429,13 +5403,13 @@ class PyTimewarpTimelineFX(PyTimelineFX):
         """
         ...
 
-    def set_speed(arg1: PyTimewarpTimelineFX, frame: float, new_speed: float) -> None:
+    def set_speed(arg1: "PyTimewarpTimelineFX", frame: float, new_speed: float) -> None:
         """
         Set the speed at the requested frame.
         """
         ...
 
-    def set_timing(arg1: PyTimewarpTimelineFX, frame: float, new_timing: float) -> None:
+    def set_timing(arg1: "PyTimewarpTimelineFX", frame: float, new_timing: float) -> None:
         """
         Set the timing at the requested frame.
         """
@@ -4478,7 +5452,7 @@ class PyTrack(PyFlameObject):
         """
         ...
 
-    def cut(arg1: PyTrack, cut_time: PyTime, sync: bool = False) -> None:
+    def cut(arg1: "PyTrack", cut_time: PyTime, sync: bool = False) -> None:
         """
         Cut the Track.
         """
@@ -4515,19 +5489,19 @@ class PyTransition(PyFlameObject):
     def __setattr__(arg1: PyFlameObject, arg2: str, arg3: Any) -> None:
         ...
 
-    def set_dissolve_to_from_colour(arg1: PyTransition, r: float = 0.0, g: float = 0.0, b: float = 0.0) -> None:
+    def set_dissolve_to_from_colour(arg1: "PyTransition", r: float = 0.0, g: float = 0.0, b: float = 0.0) -> None:
         """
         Make a dissolve transition dissolve to/from a colour.
         """
         ...
 
-    def set_fade_to_from_silence(arg1: PyTransition) -> None:
+    def set_fade_to_from_silence(arg1: "PyTransition") -> None:
         """
         Make a fade dip to/from silence.
         """
         ...
 
-    def set_transition(arg1: PyTransition, type: str, duration: int = 10, alignment: str = 'Centred', in_offset: int = 0) -> Any:
+    def set_transition(arg1: "PyTransition", type: str, duration: int = 10, alignment: str = 'Centred', in_offset: int = 0) -> Any:
         """
         Replace the Transition with another type of Transition.
         Returns the new PyTransition if successful.
@@ -4539,7 +5513,7 @@ class PyTransition(PyFlameObject):
         """
         ...
 
-    def slide(arg1: PyTransition, offset: int, sync: bool = False) -> bool:
+    def slide(arg1: "PyTransition", offset: int, sync: bool = False) -> bool:
         """
         Slide the Transition.
         Keywords argument:
@@ -4573,7 +5547,7 @@ class PyTypeFX(PyTimelineFX):
         """
         ...
 
-    def append_type_setup(arg1: PyTypeFX, file_name: str) -> bool:
+    def append_type_setup(arg1: "PyTypeFX", file_name: str) -> bool:
         """
         Append a setup to the current Type setup.
         """
@@ -4653,7 +5627,7 @@ class PyTypeNode(PyNode):
         """
         ...
 
-    def append_type_setup(arg1: PyTypeNode, file_name: str) -> bool:
+    def append_type_setup(arg1: "PyTypeNode", file_name: str) -> bool:
         """
         Append a setup to the current Type setup.
         """
@@ -4750,7 +5724,7 @@ class PyVersion(PyFlameObject):
         """
         ...
 
-    def import_DolbyVision_xml(arg1: PyVersion, file_name: str, mode: str = 'Include Frame Based Transitions Trims', track_index: int = -1) -> Any:
+    def import_DolbyVision_xml(arg1: "PyVersion", file_name: str, mode: str = 'Include Frame Based Transitions Trims', track_index: int = -1) -> Any:
         """
         Add a track to the Version.Keywords arguments:
         track_index -- Index to insert the new track at, -1 to append at the top.
@@ -4804,19 +5778,19 @@ class PyWorkspace(PyArchiveEntry):
         """
         ...
 
-    def replace_desktop(arg1: PyWorkspace, desktop: PyDesktop) -> bool:
+    def replace_desktop(arg1: "PyWorkspace", desktop: PyDesktop) -> bool:
         """
         Replace the Workspace active Desktop with another one.
         """
         ...
 
-    def set_desktop_reels(arg1: PyWorkspace, group: Any = None) -> bool:
+    def set_desktop_reels(arg1: "PyWorkspace", group: Any = None) -> bool:
         """
         Set the Desktop Reels view mode.
         """
         ...
 
-    def set_freeform(arg1: PyWorkspace, reel: Any = None) -> bool:
+    def set_freeform(arg1: "PyWorkspace", reel: Any = None) -> bool:
         """
         Set the Freeform view mode.
         """
