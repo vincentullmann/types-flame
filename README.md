@@ -7,7 +7,8 @@ However the patch version might change to account for fixes in the stubs.
 ## Installation
 
 ```sh
-pip install types-flame
+# pip install types-flame
+uv add --dev "types-flame @ git+https://github.com/vincentullmann/types-flame.git" 
 ```
 
 ## Generation
