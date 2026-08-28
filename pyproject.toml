@@ -17,9 +17,7 @@ classifiers = [
 ]
 keywords = ["types", "graphics", "VFX"]
 authors = [{name = "Beat Reichenbach", email = "beatreichenbach@users.noreply.github.com"}]
-
-[project.optional-dependencies]
-dev = ["black>=24.0"]
+dependencies = []
 
 [project.urls]
 homepage = "https://github.com/beatreichenbach/types-flame"
@@ -31,3 +29,23 @@ include = ["flame-stubs"]
 
 [tool.black]
 skip-string-normalization = true
+
+[tool.ruff]
+
+extend-ignore = [
+    "Q000",  # bad-quotes-inline-string
+    "SIM102",  # simplify-boolean-expression
+    "F541",
+
+    # type stubs
+    "PYI048", # Function body must contain exactly one statement (ruff)
+    "PIE790", # unnecessary-placeholder
+]
+
+[dependency-groups]
+dev = [
+    "beautifulsoup4>=4.12.0",
+    "libcst>=1.9.0",
+    "ruff>=0.16.1",
+    "ty>=0.0.65",
+]
