@@ -196,7 +196,7 @@ def classes_from_heading(heading: str) -> list[str]:
 
 
 def section_slug(heading: str) -> str:
-    name = re.sub(r"\s+Attributes\s*$", "", unescape(heading), flags=re.I)
+    name = re.sub(r"\s+Attributes\s*$", "", unescape(heading), flags=re.IGNORECASE)
     return re.sub(r"[^A-Za-z0-9]+", "", name.replace("&", "And"))
 
 
@@ -557,19 +557,20 @@ def _sort_key(name: str) -> tuple[int, str]:
     return (2, name)
 
 
+
+HEADER = '''
+"""Type stubs generated from Autodesk Flame HTML docs under docs/.
+
+For comparison with overwrites.pyi / flame-stubs — not applied automatically.
+"""
+
+from typing import Any
+
+'''
+
 def api_to_module(api: ApiModel) -> cst.Module:
-    header = (
-        '"""Type stubs generated from Autodesk Flame HTML docs under docs/.\n'
-        "\n"
-        "For comparison with overwrites.pyi / flame-stubs — not applied automatically.\n"
-        '"""'
-    )
     body: list[cst.BaseStatement] = [
-        cst.SimpleStatementLine([cst.Expr(cst.SimpleString(header))]),
-        cst.SimpleStatementLine(
-            [cst.ImportFrom(module=cst.Name("typing"), names=[cst.ImportAlias(cst.Name("Any"))])]
-        ),
-        cst.EmptyLine(),
+        cst.SimpleStatementLine([cst.Expr(cst.SimpleString(HEADER))]),
     ]
 
     for name in sorted(api.classes, key=_sort_key):
